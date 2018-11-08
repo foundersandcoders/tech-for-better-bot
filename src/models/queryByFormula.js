@@ -9,7 +9,7 @@ var base = Airtable.base(config.airtable);
 
 //'{notification_sent} = 0'
 
-const getRecords = (formula, cb) => {
+const queryByFormula = (formula, cb) => {
   base(config.base)
     .select({
       maxRecords: 1200,
@@ -33,4 +33,4 @@ const getRecords = (formula, cb) => {
     );
 };
 
-module.exports = getRecords;
+module.exports = queryByFormula;

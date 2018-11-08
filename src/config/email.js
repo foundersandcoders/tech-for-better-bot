@@ -8,6 +8,4 @@ if (process.env.EMAIL_PASSWORD) {
 module.exports = {
   user: 'coursefacilitator@foundersandcoders.com',
   password: emailPass,
-  sendTo: 'coursefacilitator@foundersandcoders.com',
-  subject: 'New Tech For Better Application',
 };

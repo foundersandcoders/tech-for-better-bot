@@ -16,4 +16,4 @@ Sends an automated email when a new Airtable survey response is received 🎉
 
 - Run the server locally by running `npm start` and trigger the watcher to run once by visiting `localhost:5000` in your browser. You should see a status message of `200` or `OK`
 
-- This is intended to be deployed to a service such as Heroku. To avoid server load this should be called using a cron job. Every time the cron job calls the app with a GET request, it will be triggered to check the Airtable for new responses. I used cron-jobs.org to set up a cron job that makes a GET request to my Heroku app every 5 minutes.
+- This is intended to be deployed to a service such as Heroku. To allow Heroku apps their beauty sleep, this should be called using a cron job. Every time the cron job calls the app with a GET request, it will be triggered to check the Airtable for new responses. I used cron-job.org to set up a cron job that makes a GET request to my Heroku app every 5 minutes.

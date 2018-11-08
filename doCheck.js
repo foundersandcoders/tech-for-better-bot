@@ -11,7 +11,7 @@ Airtable.configure({
 });
 var base = Airtable.base(config.airtable);
 
-function checkRecords(res) {
+function checkRecords() {
   console.log('checking records...');
   base(config.base)
     .select({
@@ -27,7 +27,7 @@ function checkRecords(res) {
 
         records.forEach(function(record) {
           if (isNew(record)) {
-            sendNotification(record, res);
+            sendNotification(record);
           }
         });
 
@@ -57,7 +57,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-function sendNotification(record, res) {
+function sendNotification(record) {
   const html = `
   <h1>💌</h1>
   <p>You have received a new Airtable response.</p>
@@ -71,11 +71,8 @@ function sendNotification(record, res) {
   };
   // send an email
   transporter.sendMail(mailOptions, function(err, info) {
-    if (err) {
-      console.log(err);
-      res.sendStatus(500);
-    } else record.updateFields({ notification_sent: true });
-    res.sendStatus(200);
+    if (err) console.log(err);
+    else record.updateFields({ notification_sent: true });
   });
 }
 

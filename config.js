@@ -20,6 +20,6 @@ module.exports = {
   password: emailPass,
   airtable_api_key: apiKey,
   airtable_link: 'https://airtable.com/tblb7XTGa07Uhe8bG/viwON2FQq5fqc9RDF',
-  sendTo: 'techforbetter@foundersandcoders.com',
+  sendTo: 'coursefacilitator@foundersandcoders.com',
   subject: 'New Tech For Better Application',
 };

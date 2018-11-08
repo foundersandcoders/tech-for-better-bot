@@ -1,0 +1,30 @@
+{
+  "name": "application-watcher",
+  "version": "1.0.0",
+  "description": "Sends an email notiication when a record is added to an Airtable",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/techforbetter/application-watcher.git"
+  },
+  "author": "Michael Watts",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/techforbetter/application-watcher/issues"
+  },
+  "homepage": "https://github.com/techforbetter/application-watcher#readme",
+  "devDependencies": {
+    "codecov": "^3.1.0",
+    "dotenv": "^6.1.0",
+    "jest": "^23.6.0"
+  },
+  "dependencies": {
+    "airtable": "^0.5.7",
+    "express": "^4.16.4",
+    "nodemailer": "^4.6.8"
+  }
+}

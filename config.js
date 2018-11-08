@@ -2,11 +2,12 @@
 const apiKey = process.env.AIRTABLE_API_KEY
   ? process.env.AIRTABLE_API_KEY
   : process.env.NODE_ENV === 'production'
-    ? null
-    : 'keyTestValue';
+  ? null
+  : 'keyTestValue';
 
+let emailPass;
 if (process.env.EMAIL_PASSWORD) {
-  const emailPass = process.env.EMAIL_PASSWORD;
+  emailPass = process.env.EMAIL_PASSWORD;
 } else {
   throw new Error('environment var EMAIL_PASSWORD must be set');
 }
@@ -19,4 +20,6 @@ module.exports = {
   password: emailPass,
   airtable_api_key: apiKey,
   airtable_link: 'https://airtable.com/tblb7XTGa07Uhe8bG/viwON2FQq5fqc9RDF',
+  sendTo: 'techforbetter@foundersandcoders.com',
+  subject: 'New Tech For Better Application',
 };

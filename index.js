@@ -5,8 +5,7 @@ const server = express();
 const port = process.env.PORT || 5000;
 
 server.get('/', (req, res) => {
-  checkRecords();
-  res.sendStatus(200);
+  checkRecords(res);
 });
 
 server.listen(port, () => {

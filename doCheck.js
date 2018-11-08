@@ -11,7 +11,7 @@ Airtable.configure({
 });
 var base = Airtable.base(config.airtable);
 
-function checkRecords() {
+function checkRecords(res) {
   console.log('checking records...');
   base(config.base)
     .select({
@@ -27,7 +27,7 @@ function checkRecords() {
 
         records.forEach(function(record) {
           if (isNew(record)) {
-            sendNotification(record);
+            sendNotification(record, res);
           }
         });
 
@@ -57,23 +57,25 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-function sendNotification(record) {
+function sendNotification(record, res) {
   const html = `
   <h1>💌</h1>
-  <p>You have received a new application for Tech For Better</p>
+  <p>You have received a new Airtable response.</p>
   <a href="${config.airtable_link}">View Airtable</a>
   `;
   const mailOptions = {
-    from: 'coursefacilitator@foundersandcoders.com', // sender address
-    to: 'coursefacilitator@foundersandcoders.com', // list of receivers
-    subject: 'New Tech For Better Application 🎉', // Subject line
+    from: config.user, // sender address
+    to: config.sendTo, // list of receivers
+    subject: config.subject, // Subject line
     html, // body of message
   };
   // send an email
   transporter.sendMail(mailOptions, function(err, info) {
-    if (err) console.log(err);
-    else record.updateFields({ notification_sent: true });
-    //console.log(info);
+    if (err) {
+      console.log(err);
+      res.sendStatus(500);
+    } else record.updateFields({ notification_sent: true });
+    res.sendStatus(200);
   });
 }
 

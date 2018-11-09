@@ -3,11 +3,14 @@ const {
   sendNotification,
   sendClientNotification,
 } = require('../models/sendMail');
+const createIssue = require('../models/createIssue');
 
 function checkRecords(req, res, next) {
   console.log('checking records...');
-  const formula = '{notification_sent} = 0';
-  queryByFormula(formula, checkRecord);
+  const needsNotification = '{notification_sent} = 0';
+  queryByFormula(needsNotification, checkRecord);
+  const needsIssue = 'AND({invitation_sent} = 1, {issue_created} = 0)';
+  queryByFormula(needsIssue, createIssue);
   res.sendStatus(200);
 }
 

@@ -1,5 +1,5 @@
 {
-  "name": "application-watcher",
+  "name": "airtable_survey_watcher",
   "version": "1.0.0",
   "description": "Sends an email notiication when a record is added to an Airtable",
   "main": "index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/techforbetter/application-watcher.git"
+    "url": "git+https://github.com/techforbetter/airtable_survey_watcher.git"
   },
   "author": "Michael Watts",
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/techforbetter/application-watcher/issues"
+    "url": "https://github.com/techforbetter/airtable_survey_watcher/issues"
   },
-  "homepage": "https://github.com/techforbetter/application-watcher#readme",
+  "homepage": "https://github.com/techforbetter/airtable_survey_watcher#readme",
   "devDependencies": {
     "codecov": "^3.1.0",
     "dotenv": "^6.1.0",

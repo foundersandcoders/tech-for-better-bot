@@ -23,6 +23,7 @@
     "jest": "^23.6.0"
   },
   "dependencies": {
+    "@octokit/rest": "^15.16.1",
     "airtable": "^0.5.7",
     "express": "^4.16.4",
     "nodemailer": "^4.6.8"

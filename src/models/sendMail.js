@@ -89,7 +89,9 @@ function sendFollowUpSurvey(record) {
   <p>When you have conducted your user research, please fill in the 
   <a href="https://airtable.com/shrLDZN2spgrZaa7w?prefill_Email=${
     record.fields['Email']
-  }&prefill_General%20User%20Survey=${record.id}">form</a> with what you have
+  }&prefill_user_survey_id=${record.id}&prefill_Name=${
+    record.fields.name
+  }">form</a> with what you have
   learned.</p>
   <p>When we have received your survey response, we will invite you to the next Definition
   workshop.</p>

@@ -25,6 +25,9 @@ function sendNotifications(record) {
   }
 }
 
+// TODO add issue number when issue is created
+// TODO when follow up survey is sent, also label issue with 'attended-workshop-1'
+
 function isNew(record) {
   return !(record.fields['notification_sent'] === true);
 }

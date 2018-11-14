@@ -90,7 +90,7 @@ function sendFollowUpSurvey(record) {
   <a href="https://airtable.com/shrLDZN2spgrZaa7w?prefill_Email=${
     record.fields['Email']
   }&prefill_user_survey_id=${record.id}&prefill_Name=${
-    record.fields.name
+    record.fields['Name']
   }">form</a> with what you have
   learned.</p>
   <p>When we have received your survey response, we will invite you to the next Definition

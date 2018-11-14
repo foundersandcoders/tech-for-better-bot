@@ -82,4 +82,37 @@ function sendClientNotification(record) {
   });
 }
 
-module.exports = { sendNotification, sendClientNotification };
+function sendFollowUpSurvey(record) {
+  const subject = 'User research survey';
+  const html = `
+  <p>Thank you for attending our discovery workshop. I hope you found it useful!</p>
+  <p>When you have conducted your user research, please fill in the 
+  <a href="https://airtable.com/shrLDZN2spgrZaa7w?prefill_Email=${
+    record.fields['Email']
+  }&prefill_General%20User%20Survey=${record.id}">form</a> with what you have
+  learned.</p>
+  <p>When we have received your survey response, we will invite you to the next Definition
+  workshop.</p>
+  <p>If you have any further questions, please don't hesitate to contact me.</p>
+  <p><b>Michael Watts</b>
+  <div>Course Facilitator</div>
+  <div>Founders & Coders</div>
+  </p>
+  `;
+  const mailOptions = {
+    from: config.user,
+    to: record.fields['Email'],
+    subject,
+    html,
+  };
+  transporter.sendMail(mailOptions, function(err, info) {
+    if (err) console.log(err);
+    else record.updateFields({ follow_up_survey_sent: true });
+  });
+}
+
+module.exports = {
+  sendNotification,
+  sendClientNotification,
+  sendFollowUpSurvey,
+};

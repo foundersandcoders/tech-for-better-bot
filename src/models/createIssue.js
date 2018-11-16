@@ -35,7 +35,7 @@ module.exports = async record => {
   <p>${record.fields['Why']}</p>
   `;
   const assignee = 'arrested-developer';
-  const labels = ['client-interested'];
+  const labels = ['application-received'];
   const result = await octokit.issues.create({
     owner,
     repo,
@@ -44,6 +44,5 @@ module.exports = async record => {
     assignee,
     labels,
   });
-  console.log('New issue created at:', result.data.url);
-  record.updateFields({ issue_created: true });
+  record.updateFields({ issue_created: true, issue_num: result.data.number });
 };

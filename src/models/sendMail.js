@@ -9,7 +9,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-function sendNotification(record) {
+function sendMeNotification(record) {
   const subject = 'New Tech for Better Application 💌';
   const html = `
   <style>
@@ -89,7 +89,7 @@ function sendFollowUpSurvey(record) {
   <p>When you have conducted your user research, please fill in the 
   <a href="https://airtable.com/shrLDZN2spgrZaa7w?prefill_Email=${
     record.fields['Email']
-  }&prefill_user_survey_id=${record.id}&prefill_Name=${
+  }&prefill_application_id=${record.id}&prefill_Name=${
     record.fields['Name']
   }">form</a> with what you have
   learned.</p>
@@ -114,7 +114,7 @@ function sendFollowUpSurvey(record) {
 }
 
 module.exports = {
-  sendNotification,
+  sendMeNotification,
   sendClientNotification,
   sendFollowUpSurvey,
 };

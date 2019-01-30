@@ -34,7 +34,7 @@ module.exports = async record => {
   <p><b>Why:</b></p>
   <p>${record.fields['Why']}</p>
   `;
-  const assignee = 'arrested-developer';
+  const assignee = config.assignIssuesTo;
   const labels = ['application-received'];
   const result = await octokit.issues.create({
     owner,

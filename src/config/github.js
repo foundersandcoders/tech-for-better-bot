@@ -8,5 +8,6 @@ if (!token) {
 
 const org = 'foundersandcoders';
 const repo = 'tech-for-better-leads';
+const assignIssuesTo = 'arrested-developer';
 
-module.exports = { token, org, repo };
+module.exports = { token, org, repo, assignIssuesTo };

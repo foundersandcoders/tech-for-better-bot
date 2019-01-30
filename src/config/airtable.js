@@ -7,6 +7,9 @@ const apiKey = process.env.AIRTABLE_API_KEY
   ? 'keyTestValue'
   : null;
 
+if (!apiKey)
+  throw new Error('AIRTABLE_API_KEY must be set in environment variables');
+
 module.exports = {
   airtable_base_id: 'apppmIXrkh2V5c2xA',
   base: 'General User Survey',

@@ -46,7 +46,7 @@ It could potentially do even more!
 
 ## How to use
 
-- The server will automatically send an email to coursfacilitator, and a notification email to the applicant, when a new Tech for Better application is received.
+- The server will automatically send an email to coursefacilitator, and a notification email to the applicant, whenever a new Tech for Better application is received.
 - Once the CF has looked over the application, and has invited the applicant to a workshop, they should tick the `invitation_sent` checkbox in Airtable. This will trigger the server to create a new issue in tech-for-better-leads with the initial labels added (note: the server is currently configured to run once every 30 minutes, so there may be a delay of up to 30 minutes before the new issues appear)
 - After the client has attended workshop 1, you can tick the `attended_workshop_1` checkbox, which will send out an email with an individualised link for the follow-up user research survey.
 - When the user research survey is received back, the contents of the survey will be automatically added to the existing issue and the labels will be updated.

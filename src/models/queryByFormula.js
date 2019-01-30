@@ -5,7 +5,7 @@ Airtable.configure({
   endpointUrl: 'https://api.airtable.com',
   apiKey: config.airtable_api_key,
 });
-var base = Airtable.base(config.airtable);
+var base = Airtable.base(config.airtable_base_id);
 
 //'{notification_sent} = 0'
 

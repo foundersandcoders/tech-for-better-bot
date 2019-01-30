@@ -2,6 +2,8 @@
 
 🤖 Automation for the Tech for Better process.
 
+Author: @arrested-developer
+
 ## What does it do?
 
 When I started the CF role, around half of my time was dedicated to coordinating the Tech for Better programme - communicating with applicants, scheduling workshops, updating information in tech-for-better-leads, organising user research, updating tech-for-better-leads some more, sending some more emails... etc. etc.

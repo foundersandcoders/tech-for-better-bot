@@ -1,7 +1,7 @@
 {
-  "name": "airtable_survey_watcher",
+  "name": "tech-for-better-bot",
   "version": "1.0.0",
-  "description": "Sends an email notiication when a record is added to an Airtable",
+  "description": "🤖 Automation for the Tech for Better process",
   "main": "index.js",
   "scripts": {
     "test": "jest",
@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/techforbetter/airtable_survey_watcher.git"
   },
-  "author": "Michael Watts",
+  "author": "@arrested-developer",
   "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/techforbetter/airtable_survey_watcher/issues"

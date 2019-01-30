@@ -34,7 +34,7 @@ It could potentially do even more!
 
 - You will need to define environment variables `AIRTABLE_API_KEY`, `GITHUB_TOKEN` and `EMAIL_PASSWORD.` Locally these should be set in a `.env` file. In production they should be set directly in the deployment environment. The Airtable key does not need to be set for testing (and so is not required on Travis).
 
-- Customise your settings in `config.js`
+- Settings for email, Airtable, and Github integrations can be made in the corresponding files in `src/config` - any sensitive data, such as API keys, must be set in the environment variables.
 
 - Run the server locally by running `npm start` and trigger the application to run once by visiting `localhost:5000` in your browser. You should see a status message of `200` or `OK`
 

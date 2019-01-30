@@ -1,7 +1,9 @@
+// In order to update the issues in tech-for-better-leads, the GITHUB_TOKEN must be
+// set in environment variables.
+
 const token = process.env.GITHUB_TOKEN ? process.env.GITHUB_TOKEN : false;
-if (token == false) {
-  console.error('Github token must be set in environment variables');
-  throw new Error('Github token must be set in environment variables');
+if (!token) {
+  throw new Error('GITHUB_TOKEN must be set in environment variables');
 }
 
 const org = 'foundersandcoders';

@@ -15,32 +15,44 @@ const addLabels = require("../models/addLabels")
 function checkRecords(req, res, next) {
   // Airtable formula for all rows that have notification_sent unchecked
   const needsNotification = "{notification_sent} = 0"
-  queryApplicationsByFormula(needsNotification, sendNotifications)
+  queryApplicationsByFormula(needsNotification)
+    .then(sendNotifications)
+    .catch(sendStatus(500))
 
   // Airtable forumla to check if applicant has been invited, and issue has not yet been created
   const needsIssue = "AND({invitation_sent} = 1, {issue_created} = 0)"
-  queryApplicationsByFormula(needsIssue, createIssue)
+  queryApplicationsByFormula(needsIssue)
+    .then(createIssue)
+    .catch(sendStatus(500))
 
   // Airtable formula for rows where applicant has attended workshop 1, but no follow-up survey has been sent
   const needsSurvey =
     "AND({attended_workshop_1} = 1, {follow_up_survey_sent} = 0)"
-  queryApplicationsByFormula(needsSurvey, sendSurvey)
+  queryApplicationsByFormula(needsSurvey)
+    .then(sendSurvey)
+    .catch(sendStatus(500))
 
   // Airtable formula to check for rows in the follow-up survey table, where the results
   // have not been added to the existing Github issue
   const newSurvey = "{added_to_issue} = 0"
-  querySurveysByFormula(newSurvey, addSurveyToIssue)
+  querySurveysByFormula(newSurvey)
+    .then(addSurveyToIssue)
+    .catch(sendStatus(500))
   res.sendStatus(200)
 }
 
-function sendNotifications(record) {
-  sendCFNotification(record)
-  sendClientNotification(record)
+function sendNotifications(records) {
+  records.forEach(record => {
+    sendCFNotification(record)
+    sendClientNotification(record)
+  })
 }
 
-function sendSurvey(record) {
-  sendFollowUpSurvey(record)
-  addLabels(record.fields["issue_num"], ["attended-workshop-1"])
+function sendSurvey(records) {
+  records.forEach(record => {
+    sendFollowUpSurvey(record)
+    addLabels(record.fields["issue_num"], ["attended-workshop-1"])
+  })
 }
 
 function addSurveyToIssue(record) {

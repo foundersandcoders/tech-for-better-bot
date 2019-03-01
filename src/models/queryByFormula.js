@@ -11,7 +11,7 @@ var base = Airtable.base(config.airtable_base_id)
 
 const queryApplicationsByFormula = formula => {
   return new Promise((resolve, reject) => {
-    let records = []
+    let results = []
     base("Applications")
       .select({
         maxRecords: 1200,
@@ -22,7 +22,7 @@ const queryApplicationsByFormula = formula => {
       .eachPage(
         function page(records, fetchNextPage) {
           records.forEach(record => {
-            records.push(record)
+            results.push(record)
           })
           fetchNextPage()
         },
@@ -30,7 +30,7 @@ const queryApplicationsByFormula = formula => {
           if (err) {
             reject(err)
           } else {
-            resolve(records)
+            resolve(results)
           }
         }
       )
@@ -39,7 +39,7 @@ const queryApplicationsByFormula = formula => {
 
 const querySurveysByFormula = formula => {
   return new Promise((resolve, reject) => {
-    let records = []
+    let results = []
     base("User Research Survey")
       .select({
         maxRecords: 1200,
@@ -50,7 +50,7 @@ const querySurveysByFormula = formula => {
       .eachPage(
         function page(records, fetchNextPage) {
           records.forEach(record => {
-            records.push(record)
+            results.push(record)
           })
           fetchNextPage()
         },
@@ -58,7 +58,7 @@ const querySurveysByFormula = formula => {
           if (err) {
             reject(err)
           } else {
-            resolve(records)
+            resolve(results)
           }
         }
       )

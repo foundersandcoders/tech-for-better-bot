@@ -17,27 +17,27 @@ function checkRecords(req, res, next) {
   const needsNotification = "{notification_sent} = 0"
   queryApplicationsByFormula(needsNotification)
     .then(sendNotifications)
-    .catch(sendStatus(500))
+    .catch(console.error)
 
   // Airtable forumla to check if applicant has been invited, and issue has not yet been created
   const needsIssue = "AND({invitation_sent} = 1, {issue_created} = 0)"
   queryApplicationsByFormula(needsIssue)
-    .then(createIssue)
-    .catch(sendStatus(500))
+    .then(createIssues)
+    .catch(console.error)
 
   // Airtable formula for rows where applicant has attended workshop 1, but no follow-up survey has been sent
   const needsSurvey =
     "AND({attended_workshop_1} = 1, {follow_up_survey_sent} = 0)"
   queryApplicationsByFormula(needsSurvey)
     .then(sendSurvey)
-    .catch(sendStatus(500))
+    .catch(console.error)
 
   // Airtable formula to check for rows in the follow-up survey table, where the results
   // have not been added to the existing Github issue
   const newSurvey = "{added_to_issue} = 0"
   querySurveysByFormula(newSurvey)
     .then(addSurveyToIssue)
-    .catch(sendStatus(500))
+    .catch(console.error)
   res.sendStatus(200)
 }
 
@@ -55,16 +55,28 @@ function sendSurvey(records) {
   })
 }
 
-function addSurveyToIssue(record) {
-  queryById(record.fields["application_id"])
-    .then(application => {
-      updateIssue(application.fields["issue_num"], record)
-      addLabels(application.fields["issue_num"], ["user-research-done"])
-      application.updateFields({
-        follow_up_survey_received: true,
-      })
+const createIssues = records => {
+  if (records) {
+    records.forEach(record => {
+      createIssue(record)
     })
-    .catch(console.error)
+  }
+}
+
+function addSurveyToIssue(records) {
+  if (records) {
+    records.forEach(record => {
+      queryById(record.fields["application_id"])
+        .then(application => {
+          updateIssue(application.fields["issue_num"], record)
+          addLabels(application.fields["issue_num"], ["user-research-done"])
+          application.updateFields({
+            follow_up_survey_received: true,
+          })
+        })
+        .catch(console.error)
+    })
+  }
 }
 
 module.exports = checkRecords

@@ -114,7 +114,7 @@ function sendFollowUpSurvey(record) {
 }
 
 module.exports = {
-  sendMeNotification,
+  sendCFNotification,
   sendClientNotification,
   sendFollowUpSurvey,
 }

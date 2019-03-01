@@ -1,5 +1,6 @@
 const nodemailer = require("nodemailer")
 const config = require("../config/email.js")
+const { airtable_base_id, airtable_survey_id } = require("../config/airtable")
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -65,7 +66,6 @@ function sendClientNotification(record) {
   const html = `
   <p>Thank you for your application to the Tech for Better programme. We will be in touch with you soon.</p>
   <p>If you have any questions in the meantime, please don't hesitate to contact me.</p>
-  <p><b>Michael Watts</b>
   <div>Course Facilitator</div>
   <div>Founders & Coders</div>
   </p>
@@ -87,7 +87,7 @@ function sendFollowUpSurvey(record) {
   const html = `
   <p>Thank you for attending our discovery workshop. I hope you found it useful!</p>
   <p>When you have conducted your user research, please fill in the 
-  <a href="https://airtable.com/shrLDZN2spgrZaa7w?prefill_Email=${
+  <a href="https://airtable.com/${airtable_survey_id}?prefill_Email=${
     record.fields["Email"]
   }&prefill_application_id=${record.id}&prefill_Name=${
     record.fields["Name"]

@@ -1,16 +1,15 @@
-const octokit = require('@octokit/rest')();
-const { token, org, repo } = require('../config/github');
+const octokit = require("@octokit/rest")()
+const { token, owner, repo } = require("../config/github")
 
 module.exports = async function addLabel(issueNum, labels) {
   octokit.authenticate({
-    type: 'token',
+    type: "token",
     token,
-  });
-  const result = await octokit.issues.addLabels({
-    owner: org,
+  })
+  await octokit.issues.addLabels({
+    owner,
     repo,
     number: issueNum,
     labels,
-  });
-  console.log(result);
-};
+  })
+}

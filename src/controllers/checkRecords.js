@@ -12,7 +12,7 @@ const createIssue = require("../models/createIssue")
 const updateIssue = require("../models/updateIssue")
 const addLabels = require("../models/addLabels")
 
-function checkRecords(req, res, next) {
+const checkRecords = (req, res, next) => {
   // Airtable formula for all rows that have notification_sent unchecked
   const needsNotification = "{notification_sent} = 0"
   queryApplicationsByFormula(needsNotification)
@@ -41,14 +41,14 @@ function checkRecords(req, res, next) {
   res.sendStatus(200)
 }
 
-function sendNotifications(records) {
+const sendNotifications = records => {
   records.forEach(record => {
     sendCFNotification(record)
     sendClientNotification(record)
   })
 }
 
-function sendSurvey(records) {
+const sendSurvey = records => {
   records.forEach(record => {
     sendFollowUpSurvey(record)
     addLabels(record.fields["issue_num"], ["attended-workshop-1"])
@@ -63,7 +63,7 @@ const createIssues = records => {
   }
 }
 
-function addSurveyToIssue(records) {
+const addSurveyToIssue = records => {
   if (records) {
     records.forEach(record => {
       queryById(record.fields["application_id"])

@@ -55,7 +55,7 @@ function sendCFNotification(record) {
     html,
   }
   transporter.sendMail(mailOptions, function(err, info) {
-    if (err) console.log(err)
+    if (err) console.error(err)
     else record.updateFields({ notification_sent: true })
   })
 }

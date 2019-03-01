@@ -34,7 +34,7 @@ function checkRecords(req, res, next) {
 }
 
 function sendNotifications(record) {
-  sendMeNotification(record)
+  sendCFNotification(record)
   sendClientNotification(record)
 }
 
@@ -44,15 +44,15 @@ function sendSurvey(record) {
 }
 
 function addSurveyToIssue(record) {
-  queryById(record.fields["application_id"], application => {
-    updateIssue(application.fields["issue_num"], record)
-    addLabels(application.fields["issue_num"], ["user-research-done"])
-    application
-      .updateFields({
+  queryById(record.fields["application_id"])
+    .then(application => {
+      updateIssue(application.fields["issue_num"], record)
+      addLabels(application.fields["issue_num"], ["user-research-done"])
+      application.updateFields({
         follow_up_survey_received: true,
       })
-      .catch(console.log)
-  })
+    })
+    .catch(console.error)
 }
 
 module.exports = checkRecords

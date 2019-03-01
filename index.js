@@ -1,14 +1,14 @@
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config()
 }
-const express = require('express');
-const checkRecords = require('./src/controllers/checkRecords');
+const express = require("express")
+const checkRecords = require("./src/controllers/checkRecords")
 
-const server = express();
-const port = process.env.PORT || 5000;
+const server = express()
+const port = process.env.PORT || 3001
 
-server.get('/', checkRecords);
+server.get("/", checkRecords)
 
 server.listen(port, () => {
-  console.log('Listening on port %i', port);
-});
+  console.log("Listening on port %i", port)
+})

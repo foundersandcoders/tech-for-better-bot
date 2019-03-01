@@ -1,12 +1,12 @@
 const nodemailer = require("nodemailer")
-const config = require("../config/email.js")
-const { airtable_base_id, airtable_survey_id } = require("../config/airtable")
+const { user, pass } = require("../config/email.js")
+const { airtable_survey_id } = require("../config/airtable")
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: config.user,
-    pass: config.password,
+    user,
+    pass,
   },
 })
 
@@ -50,7 +50,7 @@ function sendCFNotification(record) {
   <p>${record.fields["Why"]}</p>
   `
   const mailOptions = {
-    from: config.user,
+    from: user,
     to: "coursefacilitator@foundersandcoders.com",
     subject,
     html,
@@ -71,7 +71,7 @@ function sendClientNotification(record) {
   </p>
   `
   const mailOptions = {
-    from: config.user,
+    from: user,
     to: record.fields["Email"],
     subject,
     html,
@@ -102,7 +102,7 @@ function sendFollowUpSurvey(record) {
   </p>
   `
   const mailOptions = {
-    from: config.user,
+    from: user,
     to: record.fields["Email"],
     subject,
     html,

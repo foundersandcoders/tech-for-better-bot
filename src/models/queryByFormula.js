@@ -1,60 +1,70 @@
-const config = require('../config/airtable.js');
+const {
+  airtable: { apiKey, baseId },
+} = require("../config/config")
 
-const Airtable = require('airtable');
+const Airtable = require("airtable")
 Airtable.configure({
-  endpointUrl: 'https://api.airtable.com',
-  apiKey: config.airtable_api_key,
-});
-var base = Airtable.base(config.airtable_base_id);
+  endpointUrl: "https://api.airtable.com",
+  apiKey,
+})
+var base = Airtable.base(baseId)
 
 //'{notification_sent} = 0'
 
-const queryApplicationsByFormula = (formula, cb) => {
-  base('Applications')
-    .select({
-      maxRecords: 1200,
-      pageSize: 100,
-      view: 'All Responses',
-      filterByFormula: formula,
-    })
-    .eachPage(
-      function page(records, fetchNextPage) {
-        records.forEach(record => {
-          cb(record);
-        });
-        fetchNextPage();
-      },
-      function done(err) {
-        if (err) {
-          console.error(err);
-          return;
+const queryApplicationsByFormula = formula => {
+  return new Promise((resolve, reject) => {
+    let results = []
+    base("Applications")
+      .select({
+        maxRecords: 1200,
+        pageSize: 100,
+        view: "All Responses",
+        filterByFormula: formula,
+      })
+      .eachPage(
+        function page(records, fetchNextPage) {
+          records.forEach(record => {
+            results.push(record)
+          })
+          fetchNextPage()
+        },
+        function done(err) {
+          if (err) {
+            reject(err)
+          } else {
+            resolve(results)
+          }
         }
-      }
-    );
-};
+      )
+  })
+}
 
-const querySurveysByFormula = (formula, cb) => {
-  base('User Research Survey')
-    .select({
-      maxRecords: 1200,
-      pageSize: 100,
-      view: 'Grid view',
-      filterByFormula: formula,
-    })
-    .eachPage(
-      function page(records, fetchNextPage) {
-        records.forEach(record => {
-          cb(record);
-        });
-        fetchNextPage();
-      },
-      function done(err) {
-        if (err) {
-          console.error(err);
-          return;
+const querySurveysByFormula = formula => {
+  return new Promise((resolve, reject) => {
+    let results = []
+    base("User Research Survey")
+      .select({
+        maxRecords: 1200,
+        pageSize: 100,
+        view: "Grid view",
+        filterByFormula: formula,
+      })
+      .eachPage(
+        function page(records, fetchNextPage) {
+          records.forEach(record => {
+            results.push(record)
+          })
+          fetchNextPage()
+        },
+        function done(err) {
+          if (err) {
+            reject(err)
+          } else {
+            resolve(results)
+          }
         }
-      }
-    );
-};
+      )
+  })
+}
 
-module.exports = { queryApplicationsByFormula, querySurveysByFormula };
+module.exports = { queryApplicationsByFormula, querySurveysByFormula }

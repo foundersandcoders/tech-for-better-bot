@@ -1,6 +1,22 @@
-// Check for Airtable API key in environment vars
-// In test environment only, this will default to 'keyTestValue'
-/* istanbul ignore next */
+// loads config options from the environment variables.
+// a .env file in the root folder with these variables is required to run locally
+// in production, environment variables should be set in Heroku
+
+// required variables:
+
+//AIRTABLE_API_KEY=API key from Airtable
+//AIRTABLE_BASE_ID=Base Id of the Airtable base
+//EMAIL_ACCOUNT=Account to send emails from
+//EMAIL_PASSWORD=Corresponding password
+//EMAIL_NAME=Name to put on emails (CF's name)
+//GITHUB_TOKEN=Valid token with access to FAC repos
+//GITHUB_OWNER=foundersandcoders
+//GITHUB_REPO=tech-for-better-leads
+//GITHUB_ASSIGNEE=CF's Github handle
+//LINKS_EVENTBRITE=Link to eventbrite booking page for workshop 1
+//LINKS_PO_AGREEMENT=Link to PO agreement on Google docs
+//LINKS_RESEARCH_SURVEY_URL=Link to follow-up research survey on Airtable
+
 const apiKey = process.env.AIRTABLE_API_KEY
   ? process.env.AIRTABLE_API_KEY
   : process.env.NODE_ENV === "test"

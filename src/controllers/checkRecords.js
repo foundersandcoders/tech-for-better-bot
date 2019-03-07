@@ -7,6 +7,7 @@ const {
   sendCFNotification,
   sendClientNotification,
   sendClientInvitation,
+  sendClientInvitationReminder,
   sendFollowUpSurvey,
 } = require("../models/sendMail")
 const createIssue = require("../models/createIssue")
@@ -25,6 +26,14 @@ const checkRecords = (req, res, next) => {
   const needsInvitation = "AND({send_invitation} = 1, {issue_created} = 0)"
   queryApplicationsByFormula(needsInvitation)
     .then(sendInvitations)
+    .catch(console.error)
+
+  // Check for records with "send_invitation_reminder" checked, and invitation reminder has not been sent
+  // send reminder to book into Eventbrite
+  const needsInvitationReminder =
+    "AND({send_invitation_reminder} = 1, {invitation_reminder_sent} = 0)"
+  queryApplicationsByFormula(needsInvitationReminder)
+    .then(sendInvitationReminders)
     .catch(console.error)
 
   // Airtable forumla to check if applicant has been invited, and issue has not yet been created
@@ -60,6 +69,12 @@ const sendInvitations = records => {
   records.forEach(record => {
     sendClientInvitation(record)
     createIssue(record)
+  })
+}
+
+const sendInvitationReminders = records => {
+  records.forEach(record => {
+    sendClientInvitationReminder(record)
   })
 }
 

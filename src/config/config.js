@@ -32,21 +32,21 @@ if (!surveyId)
     "AIRTABLE_SURVEY_ID must be set in environment variables, using the ID of the survey table"
   )
 
-let emailPass
+let pass
 if (process.env.EMAIL_PASSWORD) {
   emailPass = process.env.EMAIL_PASSWORD
 } else {
   throw new Error("environment var EMAIL_PASSWORD must be set")
 }
 
-let emailUser
+let user
 if (process.env.EMAIL_ACCOUNT) {
   emailUser = process.env.EMAIL_ACCOUNT
 } else {
   throw new Error("environment var EMAIL_ACCOUNT must be set")
 }
 
-let cfName
+let name
 if (process.env.EMAIL_NAME) {
   cfName = process.env.EMAIL_NAME
 } else {
@@ -95,9 +95,9 @@ module.exports = {
     apiKey,
   },
   email: {
-    user: emailUser,
-    pass: emailPass,
-    name: cfName,
+    user,
+    pass,
+    name,
   },
   github: {
     token,

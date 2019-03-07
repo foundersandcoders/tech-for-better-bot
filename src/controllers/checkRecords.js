@@ -9,6 +9,7 @@ const {
   sendClientInvitation,
   sendClientInvitationReminder,
   sendFollowUpSurvey,
+  sendClientSurveyNotification,
 } = require("../models/sendMail")
 const createIssue = require("../models/createIssue")
 const updateIssue = require("../models/updateIssue")
@@ -103,6 +104,7 @@ const addSurveyToIssue = records => {
           application.updateFields({
             follow_up_survey_received: true,
           })
+          sendClientSurveyNotification(application)
         })
         .catch(console.error)
     })

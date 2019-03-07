@@ -206,7 +206,7 @@ const sendClientSurveyNotification = record => {
   }
   transporter.sendMail(mailOptions, function(err, info) {
     if (err) console.log(err)
-    else record.updateFields({ follow_up_survey_sent: true })
+    else record.updateFields({ client_survey_notification_sent: true })
   })
 }
 

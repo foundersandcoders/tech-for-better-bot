@@ -6,6 +6,7 @@ const queryById = require("../models/queryById")
 const {
   sendCFNotification,
   sendClientNotification,
+  sendClientInvitation,
   sendFollowUpSurvey,
 } = require("../models/sendMail")
 const createIssue = require("../models/createIssue")
@@ -17,6 +18,13 @@ const checkRecords = (req, res, next) => {
   const needsNotification = "{notification_sent} = 0"
   queryApplicationsByFormula(needsNotification)
     .then(sendNotifications)
+    .catch(console.error)
+
+  // Check for records with "send_invitation" checked, and invitation has not been sent
+  // send invitation and create Github issue
+  const needsInvitation = "AND({send_invitation} = 1, {issue_created} = 0)"
+  queryApplicationsByFormula(needsInvitation)
+    .then(sendInvitations)
     .catch(console.error)
 
   // Airtable forumla to check if applicant has been invited, and issue has not yet been created
@@ -45,6 +53,13 @@ const sendNotifications = records => {
   records.forEach(record => {
     sendCFNotification(record)
     sendClientNotification(record)
+  })
+}
+
+const sendInvitations = records => {
+  records.forEach(record => {
+    sendClientInvitation(record)
+    createIssue(record)
   })
 }
 

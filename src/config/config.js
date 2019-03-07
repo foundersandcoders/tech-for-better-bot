@@ -97,7 +97,7 @@ const bookingUrl = process.env.LINKS_EVENTBRITE
 if (!bookingUrl)
   throw new Error("Eventbrite booking URL must be set in environment variables")
 
-const productOwnerAgreement = process.env.LINKS_PO_AGREEMENT
+const productOwnerAgreementUrl = process.env.LINKS_PO_AGREEMENT
   ? process.env.LINKS_PO_AGREEMENT
   : false
 if (!bookingUrl)
@@ -123,7 +123,7 @@ module.exports = {
   },
   links: {
     bookingUrl,
-    productOwnerAgreement,
+    productOwnerAgreementUrl,
     researchSurveyUrl,
   },
 }

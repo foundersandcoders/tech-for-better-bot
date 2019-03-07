@@ -77,6 +77,7 @@ function sendClientNotification(record) {
   const mailOptions = {
     from: user,
     to: record.fields["Email"],
+    cc: user,
     subject,
     html,
   }
@@ -108,6 +109,7 @@ const sendClientInvitation = record => {
   const mailOptions = {
     from: user,
     to: record.fields["Email"],
+    cc: user,
     subject,
     html,
   }
@@ -140,6 +142,7 @@ function sendFollowUpSurvey(record) {
   const mailOptions = {
     from: user,
     to: record.fields["Email"],
+    cc: user,
     subject,
     html,
   }

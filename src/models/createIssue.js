@@ -1,5 +1,7 @@
 const octokit = require("@octokit/rest")()
-const { token, owner, repo, assignee } = require("../config/github")
+const {
+  github: { token, owner, repo, assignee },
+} = require("../config/config")
 
 module.exports = async record => {
   octokit.authenticate({

@@ -1,11 +1,13 @@
-const config = require("../config/airtable.js")
+const {
+  airtable: { apiKey, baseId },
+} = require("../config/config")
 
 const Airtable = require("airtable")
 Airtable.configure({
   endpointUrl: "https://api.airtable.com",
-  apiKey: config.airtable_api_key,
+  apiKey,
 })
-var base = Airtable.base(config.airtable_base_id)
+var base = Airtable.base(baseId)
 
 //'{notification_sent} = 0'
 

@@ -26,13 +26,13 @@ const apiKey = process.env.AIRTABLE_API_KEY
 if (!apiKey)
   throw new Error("AIRTABLE_API_KEY must be set in environment variables")
 
-const airtableBase = process.env.AIRTABLE_BASE_ID
+const baseId = process.env.AIRTABLE_BASE_ID
   ? process.env.AIRTABLE_BASE_ID
   : process.env.NODE_ENV === "test"
   ? "TEST_BASE_ID"
   : null
 
-if (!airtableBase)
+if (!baseId)
   throw new Error("AIRTABLE_BASE_ID must be set in environment variables")
 
 const researchSurveyUrl = process.env.LINKS_RESEARCH_SURVEY_URL
@@ -43,28 +43,23 @@ if (!researchSurveyUrl)
     "LINKS_RESEARCH_SURVEY_URL must be set to the URL for the folow-up Airtable survey form"
   )
 
-if (!surveyId)
-  throw new Error(
-    "AIRTABLE_SURVEY_ID must be set in environment variables, using the ID of the survey table"
-  )
-
 let pass
 if (process.env.EMAIL_PASSWORD) {
-  emailPass = process.env.EMAIL_PASSWORD
+  pass = process.env.EMAIL_PASSWORD
 } else {
   throw new Error("environment var EMAIL_PASSWORD must be set")
 }
 
 let user
 if (process.env.EMAIL_ACCOUNT) {
-  emailUser = process.env.EMAIL_ACCOUNT
+  user = process.env.EMAIL_ACCOUNT
 } else {
   throw new Error("environment var EMAIL_ACCOUNT must be set")
 }
 
 let name
 if (process.env.EMAIL_NAME) {
-  cfName = process.env.EMAIL_NAME
+  name = process.env.EMAIL_NAME
 } else {
   throw new Error("environment var CF_NAME must be set")
 }

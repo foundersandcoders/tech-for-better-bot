@@ -66,6 +66,7 @@ function sendCFNotification(record) {
 function sendClientNotification(record) {
   const subject = "Thank your for your application"
   const html = `
+  <p>Hello,</p>
   <p>Thank you for your application to the Tech for Better programme. We will be in touch with you soon.</p>
   <p>If you have any questions in the meantime, please don't hesitate to contact me.</p>
   <p>${name}
@@ -88,6 +89,7 @@ function sendClientNotification(record) {
 const sendClientInvitation = record => {
   const subject = "Tech for Better"
   const html = `
+  <p>Hello!</p>
   <p>We would love to invite you to take part in the Tech for Better programme! We will start with
   an introductory workshop for our developers to get to know you and the problems you want to solve</p>
   <p>You can book a place at one of our upcoming workshops via <a href="${bookingUrl}">Eventbrite.</a></p>
@@ -98,7 +100,7 @@ const sendClientInvitation = record => {
   if you have any questions at all.</p>
   <p>Regards,</p>
   <p>
-  <div>${name}</div>
+  <div><b>${name}</b></div>
   <div>Course Facilitator</div>
   <div>Founders & Coders</div>
   </p>
@@ -118,6 +120,7 @@ const sendClientInvitation = record => {
 function sendFollowUpSurvey(record) {
   const subject = "User research survey"
   const html = `
+  <p>Hi,</p>
   <p>Thank you for attending our discovery workshop. I hope you found it useful!</p>
   <p>When you have conducted your user research, please fill in the 
   <a href="${researchSurveyUrl}?prefill_Email=${

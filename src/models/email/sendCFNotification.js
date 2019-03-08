@@ -1,15 +1,4 @@
-const nodemailer = require("nodemailer")
-const {
-  email: { user, pass },
-} = require("../../config")
-
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user,
-    pass,
-  },
-})
+const transporter = require("./transporter")
 
 const sendCFNotification = record => {
   const subject = "New Tech for Better Application 💌"

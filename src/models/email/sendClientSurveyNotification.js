@@ -1,16 +1,9 @@
-const nodemailer = require("nodemailer")
 const {
-  email: { user, pass, name },
+  email: { user, name },
   links: { productOwnerAgreementUrl },
 } = require("../../config")
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user,
-    pass,
-  },
-})
+const transporter = require("./transporter")
 
 const sendClientSurveyNotification = record => {
   const subject = "User research survey"

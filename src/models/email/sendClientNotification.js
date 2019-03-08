@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer")
 const {
   email: { user, pass, name },
   links: { researchSurveyUrl, bookingUrl, productOwnerAgreementUrl },
-} = require("../../config/config")
+} = require("../../config")
 
 const transporter = nodemailer.createTransport({
   service: "gmail",

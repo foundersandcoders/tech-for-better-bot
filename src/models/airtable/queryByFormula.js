@@ -1,6 +1,6 @@
 const {
   airtable: { apiKey, baseId },
-} = require("../config/config")
+} = require("./../../config/config")
 
 const Airtable = require("airtable")
 Airtable.configure({

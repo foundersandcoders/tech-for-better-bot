@@ -1,8 +1,9 @@
 const {
   queryApplicationsByFormula,
   querySurveysByFormula,
-} = require("../models/airtable/queryByFormula")
-const queryById = require("../models/airtable/queryById")
+  queryById,
+} = require("../models/airtable/index")
+
 const {
   sendCFNotification,
   sendClientNotification,
@@ -10,10 +11,13 @@ const {
   sendClientInvitationReminder,
   sendFollowUpSurvey,
   sendClientSurveyNotification,
-} = require("../models/email/sendMail")
-const createIssue = require("../models/github/createIssue")
-const updateIssue = require("../models/github/updateIssue")
-const addLabels = require("../models/github/addLabels")
+} = require("../models/email/index")
+
+const {
+  createIssue,
+  updateIssue,
+  addLabels,
+} = require("../models/github/index")
 
 const checkRecords = (req, res, next) => {
   // Airtable formula for all rows that have notification_sent unchecked

@@ -65,7 +65,7 @@ function sendClientNotification(record) {
   const html = `
   <p>Thank you for your application to the Tech for Better programme. We will be in touch with you soon.</p>
   <p>If you have any questions in the meantime, please don't hesitate to contact me.</p>
-  <p><b>Michael Watts</b>
+  <p><b>Charlie La Fosse</b>
   <div>Course Facilitator</div>
   <div>Founders & Coders</div>
   </p>
@@ -96,7 +96,7 @@ function sendFollowUpSurvey(record) {
   <p>When we have received your survey response, we will invite you to the next Definition
   workshop.</p>
   <p>If you have any further questions, please don't hesitate to contact me.</p>
-  <p><b>Michael Watts</b>
+  <p><b>Charlie La Fosse</b>
   <div>Course Facilitator</div>
   <div>Founders & Coders</div>
   </p>

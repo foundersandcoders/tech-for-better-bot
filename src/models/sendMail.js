@@ -93,8 +93,7 @@ function sendFollowUpSurvey(record) {
     record.fields['Name']
   }">form</a> with what you have
   learned.</p>
-  <p>When we have received your survey response, we will invite you to the next Definition
-  workshop.</p>
+  <p>Once we have received your survey response, we will keep you up to date with the selection process for your project.</p>
   <p>If you have any further questions, please don't hesitate to contact me.</p>
   <p><b>Charlie La Fosse</b>
   <div>Course Facilitator</div>

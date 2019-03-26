@@ -40,18 +40,18 @@ It could potentially do even more!
 
 Configuration is set through environment variables. The following must be set in a `.env` file in the root of the project to run locally, or set directly in the deployment environment (e.g. Heroku)
 
-AIRTABLE_API_KEY=YOURSECRET
-AIRTABLE_BASE_ID=YOURSECRET
-EMAIL_ACCOUNT=coursefacilitator@foundersandcoders.com // account that nodemailer sends from
-EMAIL_PASSWORD=YOURSECRET // corresponding password
-EMAIL_NAME=Charlie La Fosse // name that emails are sent from
-GITHUB_TOKEN=YOURSECRET
-GITHUB_OWNER=foundersandcoders
-GITHUB_REPO=tech-for-better-leads // repo to create new issues in
-GITHUB_ASSIGNEE=charlielafosse // who to assign new issues to
-LINKS_EVENTBRITE=https://www.eventbrite.co.uk/e/tech-for-better-discovery-workshop-tickets-55336783810
-LINKS_PO_AGREEMENT=https://docs.google.com/document/d/1PA6i2VILi4kJOF7QuJxHMwTX2dILNI2BxCBfmZ0ARHs/edit?usp=sharing
-LINKS_RESEARCH_SURVEY_URL=YOURSURVEYLINK // URL to the follow up survey
+AIRTABLE_API_KEY=YOURSECRET\n
+AIRTABLE_BASE_ID=YOURSECRET\n
+EMAIL_ACCOUNT=coursefacilitator@foundersandcoders.com // account that nodemailer sends from\n
+EMAIL_PASSWORD=YOURSECRET // corresponding password\n
+EMAIL_NAME=Charlie La Fosse // name that emails are sent from\n
+GITHUB_TOKEN=YOURSECRET\n
+GITHUB_OWNER=foundersandcoders\n
+GITHUB_REPO=tech-for-better-leads // repo to create new issues in\n
+GITHUB_ASSIGNEE=charlielafosse // who to assign new issues to\n
+LINKS_EVENTBRITE=https://www.eventbrite.co.uk/e/tech-for-better-discovery-workshop-tickets-55336783810\n
+LINKS_PO_AGREEMENT=https://docs.google.com/document/d/1PA6i2VILi4kJOF7QuJxHMwTX2dILNI2BxCBfmZ0ARHs/edit?usp=sharing\n
+LINKS_RESEARCH_SURVEY_URL=YOURSURVEYLINK // URL to the follow up survey\n
 
 ### Airtable Setup
 

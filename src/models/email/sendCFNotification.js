@@ -1,3 +1,7 @@
+const {
+  email: { user },
+} = require("../../config")
+
 const transporter = require("./transporter")
 
 const sendCFNotification = record => {

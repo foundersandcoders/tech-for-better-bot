@@ -16,6 +16,8 @@ It can:
 
 - Notify you when a new Tech for Better application is received
 - Notify the client that we have received their application
+- Send an invitation to attend a workshop, with a link to a given page (e.g. Eventbrite)
+- Send a reminder invitation if a client has not yet booked themselves in
 - Create a new issue in tech-for-better-leads, add the application info and initial labels
 - Send individual emails to Tech for Better clients with user research survey links
 - Look for user research surveys in the airtable base, add them to the relevant issue in tech-for-better-leads and update the labels
@@ -34,23 +36,43 @@ It could potentially do even more!
 
 - The server sends emails using `nodemailer`, using the coursefacilitator G-Suite account. The CF should have the password for this account.
 
-- You will need to define environment variables `AIRTABLE_API_KEY`, `GITHUB_TOKEN` and `EMAIL_PASSWORD.` Locally these should be set in a `.env` file. In production they should be set directly in the deployment environment. The Airtable key does not need to be set for testing (and so is not required on Travis).
+### App Configuration
 
-- Settings for email, Airtable, and Github integrations can be made in the corresponding files in `src/config` - any sensitive data, such as API keys, must be set in the environment variables.
+Configuration is set through environment variables. The following must be set in a `.env` file in the root of the project to run locally, or set directly in the deployment environment (e.g. Heroku)
+
+AIRTABLE_API_KEY=YOURSECRET
+AIRTABLE_BASE_ID=YOURSECRET
+EMAIL_ACCOUNT=coursefacilitator@foundersandcoders.com // account that nodemailer sends from
+EMAIL_PASSWORD=YOURSECRET // corresponding password
+EMAIL_NAME=Charlie La Fosse // name that emails are sent from
+GITHUB_TOKEN=YOURSECRET
+GITHUB_OWNER=foundersandcoders
+GITHUB_REPO=tech-for-better-leads // repo to create new issues in
+GITHUB_ASSIGNEE=charlielafosse // who to assign new issues to
+LINKS_EVENTBRITE=https://www.eventbrite.co.uk/e/tech-for-better-discovery-workshop-tickets-55336783810
+LINKS_PO_AGREEMENT=https://docs.google.com/document/d/1PA6i2VILi4kJOF7QuJxHMwTX2dILNI2BxCBfmZ0ARHs/edit?usp=sharing
+LINKS_RESEARCH_SURVEY_URL=YOURSURVEYLINK // URL to the follow up survey
+
+### Airtable Setup
+
+The fields in Airtable should be configured as per [this example](https://airtable.com/shrPz9lEEo5PheVna)
+
+## Running locally
 
 - Run the server locally by running `npm start` and trigger the application to run once by visiting `localhost:5000` in your browser. You should see a status message of `200` or `OK`
 
 ## Deploying
 
-- This is intended to be deployed to a service such as Heroku. To allow Heroku apps their beauty sleep, this app can be called using a cron job. Every time the cron job calls the app with a GET request, it will be triggered to check the Airtable for new responses. I used cron-job.org to send a GET request to my Heroku app every 30 minutes.
+- This is intended to be deployed to a service such as Heroku. To allow Heroku apps their beauty sleep, this app can be called using a cron job. Every time the cron job calls the app with a GET request, it will be triggered to check the Airtable for new responses. I used cron-job.org to send a GET request to the deployed Heroku app every 30 minutes.
 
 - The app is currently deployed using the coursefacilitator@foundersandcoders.com Heroku account. Pushes or merges to master on this repo will initiate a new build. If you need access, @arrested-developer might be able to help.
 
 ## How to use
 
 - The server will automatically send an email to coursefacilitator, and a notification email to the applicant, whenever a new Tech for Better application is received.
-- Once the CF has looked over the application, and has invited the applicant to a workshop, they should tick the `invitation_sent` checkbox in Airtable. This will trigger the server to create a new issue in tech-for-better-leads with the initial labels added (note: the server is currently configured to run once every 30 minutes, so there may be a delay of up to 30 minutes before the new issues appear)
-- After the client has attended workshop 1, you can tick the `attended_workshop_1` checkbox, which will send out an email with an individualised link for the follow-up user research survey.
+- Once the CF has looked over the application, and wishes to invite the applicant to a workshop, they should tick the `send_invitation` checkbox in Airtable. This will trigger the server to create a new issue in tech-for-better-leads with the initial labels added and send an invitation to the applicant with a link to workshops and a link to the PO agreement (note: the server is currently configured to run once every 30 minutes, so there may be a delay of up to 30 minutes before the new issues appear)
+- If the client has not booked into a workshop, the CF can send a reminder by checking the `send_invitation_reminder` checkbox in Airtable.
+- After the client has attended workshop 1, you can tick the `attended_workshop_1` checkbox, which will send out an email with an individualised link for the follow-up user research survey and update the labels on Github.
 - When the user research survey is received back, the contents of the survey will be automatically added to the existing issue and the labels will be updated.
 
 ## Contributing

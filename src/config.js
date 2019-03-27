@@ -21,104 +21,106 @@ const apiKey = process.env.AIRTABLE_API_KEY
   ? process.env.AIRTABLE_API_KEY
   : process.env.NODE_ENV === "test"
   ? "keyTestValue"
-  : null
+  : null;
 
 if (!apiKey)
-  throw new Error("AIRTABLE_API_KEY must be set in environment variables")
+  throw new Error("AIRTABLE_API_KEY must be set in environment variables");
 
 const baseId = process.env.AIRTABLE_BASE_ID
   ? process.env.AIRTABLE_BASE_ID
   : process.env.NODE_ENV === "test"
   ? "TEST_BASE_ID"
-  : null
+  : null;
 
 if (!baseId)
-  throw new Error("AIRTABLE_BASE_ID must be set in environment variables")
+  throw new Error("AIRTABLE_BASE_ID must be set in environment variables");
 
 const researchSurveyUrl = process.env.LINKS_RESEARCH_SURVEY_URL
   ? process.env.LINKS_RESEARCH_SURVEY_URL
-  : false
+  : false;
 if (!researchSurveyUrl)
   throw new Error(
     "LINKS_RESEARCH_SURVEY_URL must be set to the URL for the folow-up Airtable survey form"
-  )
+  );
 
-let pass
+let pass;
 if (process.env.EMAIL_PASSWORD) {
-  pass = process.env.EMAIL_PASSWORD
+  pass = process.env.EMAIL_PASSWORD;
 } else {
-  throw new Error("environment var EMAIL_PASSWORD must be set")
+  throw new Error("environment var EMAIL_PASSWORD must be set");
 }
 
-let user
+let user;
 if (process.env.EMAIL_ACCOUNT) {
-  user = process.env.EMAIL_ACCOUNT
+  user = process.env.EMAIL_ACCOUNT;
 } else {
-  throw new Error("environment var EMAIL_ACCOUNT must be set")
+  throw new Error("environment var EMAIL_ACCOUNT must be set");
 }
 
-let name
+let name;
 if (process.env.EMAIL_NAME) {
-  name = process.env.EMAIL_NAME
+  name = process.env.EMAIL_NAME;
 } else {
-  throw new Error("environment var CF_NAME must be set")
+  throw new Error("environment var CF_NAME must be set");
 }
 
-const token = process.env.GITHUB_TOKEN ? process.env.GITHUB_TOKEN : false
+const token = process.env.GITHUB_TOKEN ? process.env.GITHUB_TOKEN : false;
 if (!token) {
-  throw new Error("GITHUB_TOKEN must be set in environment variables")
+  throw new Error("GITHUB_TOKEN must be set in environment variables");
 }
 
-const owner = process.env.GITHUB_OWNER ? process.env.GITHUB_OWNER : false
+const owner = process.env.GITHUB_OWNER ? process.env.GITHUB_OWNER : false;
 if (!owner) {
-  throw new Error("GITHUB_OWNER must be set in environment variables")
+  throw new Error("GITHUB_OWNER must be set in environment variables");
 }
 
-const repo = process.env.GITHUB_REPO ? process.env.GITHUB_REPO : false
+const repo = process.env.GITHUB_REPO ? process.env.GITHUB_REPO : false;
 if (!repo) {
-  throw new Error("GITHUB_REPO must be set in environment variables")
+  throw new Error("GITHUB_REPO must be set in environment variables");
 }
 
 const assignee = process.env.GITHUB_ASSIGNEE
   ? process.env.GITHUB_ASSIGNEE
-  : false
+  : false;
 if (!assignee) {
-  throw new Error("GITHUB_TOKEN must be set in environment variables")
+  throw new Error("GITHUB_TOKEN must be set in environment variables");
 }
 
 const bookingUrl = process.env.LINKS_EVENTBRITE
   ? process.env.LINKS_EVENTBRITE
-  : false
+  : false;
 if (!bookingUrl)
-  throw new Error("Eventbrite booking URL must be set in environment variables")
+  throw new Error(
+    "Eventbrite booking URL must be set in environment variables"
+  );
 
 const productOwnerAgreementUrl = process.env.LINKS_PO_AGREEMENT
   ? process.env.LINKS_PO_AGREEMENT
-  : false
+  : false;
 if (!bookingUrl)
   throw new Error(
     "URL for Product Owner Agreement document must be set in environment variables"
-  )
+  );
 
 module.exports = {
   airtable: {
     baseId,
-    apiKey,
+    apiKey
   },
   email: {
     user,
     pass,
-    name,
+    name
   },
   github: {
     token,
     owner,
     repo,
-    assignee,
+    assignee
   },
   links: {
     bookingUrl,
     productOwnerAgreementUrl,
-    researchSurveyUrl,
-  },
-}
+    researchSurveyUrl
+  }
+};

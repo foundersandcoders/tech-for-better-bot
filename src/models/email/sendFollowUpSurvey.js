@@ -1,12 +1,12 @@
 const {
   email: { user, name },
-  links: { researchSurveyUrl },
-} = require("../../config")
+  links: { researchSurveyUrl }
+} = require("../../config");
 
-const transporter = require("./transporter")
+const transporter = require("./transporter");
 
 const sendFollowUpSurvey = record => {
-  const subject = "User research survey"
+  const subject = "User research survey";
   const html = `
   <p>Hi,</p>
   <p>Thank you for attending our discovery workshop. I hope you found it useful!</p>
@@ -24,18 +24,18 @@ const sendFollowUpSurvey = record => {
   <div>Course Facilitator</div>
   <div>Founders & Coders</div>
   </p>
-  `
+  `;
   const mailOptions = {
     from: user,
     to: record.fields["Email"],
     cc: user,
     subject,
-    html,
-  }
+    html
+  };
   transporter.sendMail(mailOptions, function(err, info) {
-    if (err) console.log(err)
-    else record.updateFields({ follow_up_survey_sent: true })
-  })
-}
+    if (err) console.log(err);
+    else record.updateFields({ follow_up_survey_sent: true });
+  });
+};
 
-module.exports = sendFollowUpSurvey
+module.exports = sendFollowUpSurvey;

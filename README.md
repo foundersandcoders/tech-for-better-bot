@@ -19,7 +19,7 @@ It can:
 - Send an invitation to attend a workshop, with a link to a given page (e.g. Eventbrite)
 - Send a reminder invitation if a client has not yet booked themselves in
 - Create a new issue in tech-for-better-leads, add the application info and initial labels
-- Send individual emails to Tech for Better clients with user research survey links
+- Send individual emails to Tech for Better clients with user research survey links, and also feedback forms once a project has been completed
 - Look for user research surveys in the airtable base, add them to the relevant issue in tech-for-better-leads and update the labels
 
 It could potentially do even more!
@@ -52,7 +52,7 @@ Configuration is set through environment variables. The following must be set in
 - LINKS_EVENTBRITE=https://www.eventbrite.co.uk/e/tech-for-better-discovery-workshop-tickets-55336783810
 - LINKS_PO_AGREEMENT=https://docs.google.com/document/d/1PA6i2VILi4kJOF7QuJxHMwTX2dILNI2BxCBfmZ0ARHs/edit?usp=sharing
 - LINKS_RESEARCH_SURVEY_URL=YOURSURVEYLINK // URL to the follow up survey
-
+- LINKS_EXIT_FEEDBACK_FORM_URL=YOURFEEDBACKFORMLINK // URL to the exit feedback form
 
 ### Airtable Setup
 
@@ -75,6 +75,7 @@ The fields in Airtable should be configured as per [this example](https://airtab
 - If the client has not booked into a workshop, the CF can send a reminder by checking the `send_invitation_reminder` checkbox in Airtable.
 - After the client has attended workshop 1, you can tick the `attended_workshop_1` checkbox, which will send out an email with an individualised link for the follow-up user research survey and update the labels on Github.
 - When the user research survey is received back, the contents of the survey will be automatically added to the existing issue and the labels will be updated.
+- If `project_completed` is checked in Airtable, then feel free to check `send_exit_feedback`. This will send out the participant feedback form to the client, and `sent_exit_feedback` will also be ticked when that email is actually sent (it may take up to 30 mins).
 
 ## Contributing
 

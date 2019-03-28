@@ -75,6 +75,7 @@ The fields in Airtable should be configured as per [this example](https://airtab
 - If the client has not booked into a workshop, the CF can send a reminder by checking the `send_invitation_reminder` checkbox in Airtable.
 - After the client has attended workshop 1, you can tick the `attended_workshop_1` checkbox, which will send out an email with an individualised link for the follow-up user research survey and update the labels on Github.
 - When the user research survey is received back, the contents of the survey will be automatically added to the existing issue and the labels will be updated.
+- If `project_completed` is checked in Airtable, then feel free to check `send_exit_feedback`. This will send out the participant feedback form to the client, and `sent_exit_feedback` will also be ticked when that email is actually sent (it may take up to 30 mins).
 
 ## Contributing
 

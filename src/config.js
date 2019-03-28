@@ -16,6 +16,7 @@
 //LINKS_EVENTBRITE=Link to eventbrite booking page for workshop 1
 //LINKS_PO_AGREEMENT=Link to PO agreement on Google docs
 //LINKS_RESEARCH_SURVEY_URL=Link to follow-up research survey on Airtable
+// LINKS_EXIT_FEEDBACK_FORM_URL=Link to exit feedback form on Airtable
 
 const apiKey = process.env.AIRTABLE_API_KEY
   ? process.env.AIRTABLE_API_KEY
@@ -41,6 +42,14 @@ const researchSurveyUrl = process.env.LINKS_RESEARCH_SURVEY_URL
 if (!researchSurveyUrl)
   throw new Error(
     "LINKS_RESEARCH_SURVEY_URL must be set to the URL for the folow-up Airtable survey form"
+  );
+
+const exitFeedbackFormUrl = process.env.LINKS_EXIT_FEEDBACK_FORM_URL
+  ? process.env.LINKS_EXIT_FEEDBACK_FORM_URL
+  : false;
+if (!exitFeedbackFormUrl)
+  throw new Error(
+    "LINKS_EXIT_FEEDBACK_FORM_URL must be set to the URL for the Airtable exit feedback form"
   );
 
 let pass;
@@ -121,6 +130,7 @@ module.exports = {
   links: {
     bookingUrl,
     productOwnerAgreementUrl,
-    researchSurveyUrl
+    researchSurveyUrl,
+    exitFeedbackFormUrl
   }
 };

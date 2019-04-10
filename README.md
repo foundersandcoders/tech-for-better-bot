@@ -19,7 +19,8 @@ It can:
 - Send an invitation to attend a workshop, with a link to a given page (e.g. Eventbrite)
 - Send a reminder invitation if a client has not yet booked themselves in
 - Create a new issue in tech-for-better-leads, add the application info and initial labels
-- Send individual emails to Tech for Better clients with user research survey links, and also feedback forms once a project has been completed
+- Send individual emails to Tech for Better clients with user research survey links, as well as a reminder email if need
+- Send feedback forms once a project has been completed
 - Look for user research surveys in the airtable base, add them to the relevant issue in tech-for-better-leads and update the labels
 
 It could potentially do even more!
@@ -53,6 +54,7 @@ Configuration is set through environment variables. The following must be set in
 - LINKS_PO_AGREEMENT=https://docs.google.com/document/d/1PA6i2VILi4kJOF7QuJxHMwTX2dILNI2BxCBfmZ0ARHs/edit?usp=sharing
 - LINKS_RESEARCH_SURVEY_URL=YOURSURVEYLINK // URL to the follow up survey
 - LINKS_EXIT_FEEDBACK_FORM_URL=YOURFEEDBACKFORMLINK // URL to the exit feedback form
+- USER_RESEARCH_DEADLINE=YOURDATE // The current deadline for POs to return their user research results. Make sure it's formatted like so: 22nd-April
 
 ### Airtable Setup
 

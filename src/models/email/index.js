@@ -5,6 +5,7 @@ const sendClientInvitationReminder = require("./sendClientInvitationReminder");
 const sendFollowUpSurvey = require("./sendFollowUpSurvey");
 const sendClientSurveyNotification = require("./sendClientSurveyNotification");
 const sendExitFeedbackForm = require("./sendExitFeedbackForm");
+const sendSurveyReminder = require("./sendSurveyReminder")
 
 module.exports = {
   sendCFNotification,
@@ -13,5 +14,6 @@ module.exports = {
   sendClientInvitationReminder,
   sendFollowUpSurvey,
   sendClientSurveyNotification,
-  sendExitFeedbackForm
+  sendExitFeedbackForm,
+  sendSurveyReminder
 };

@@ -19,7 +19,8 @@ It can:
 - Send an invitation to attend a workshop, with a link to a given page (e.g. Eventbrite)
 - Send a reminder invitation if a client has not yet booked themselves in
 - Create a new issue in tech-for-better-leads, add the application info and initial labels
-- Send individual emails to Tech for Better clients with user research survey links, and also feedback forms once a project has been completed
+- Send individual emails to Tech for Better clients with user research survey links, as well as a reminder email if need
+- Send feedback forms once a project has been completed
 - Look for user research surveys in the airtable base, add them to the relevant issue in tech-for-better-leads and update the labels
 
 It could potentially do even more!
@@ -53,10 +54,11 @@ Configuration is set through environment variables. The following must be set in
 - LINKS_PO_AGREEMENT=https://docs.google.com/document/d/1PA6i2VILi4kJOF7QuJxHMwTX2dILNI2BxCBfmZ0ARHs/edit?usp=sharing
 - LINKS_RESEARCH_SURVEY_URL=YOURSURVEYLINK // URL to the follow up survey
 - LINKS_EXIT_FEEDBACK_FORM_URL=YOURFEEDBACKFORMLINK // URL to the exit feedback form
+- USER_RESEARCH_DEADLINE=YOURDATE // The current deadline for POs to return their user research results. Make sure it's formatted like so: 22nd-April
 
 ### Airtable Setup
 
-The fields in Airtable should be configured as per [this example](https://airtable.com/shrPz9lEEo5PheVna)
+The fields in Airtable should be configured as per [this example](https://airtable.com/invite/l?inviteId=invjFabwJZfMFqaxf&inviteToken=79d712b468354a15d8bfc298eec154bf9bc9adc76fb59d8050617c5425563b35). Ask @charlielafosse if there are problems with access.
 
 ## Running locally
 
@@ -74,7 +76,8 @@ The fields in Airtable should be configured as per [this example](https://airtab
 - Once the CF has looked over the application, and wishes to invite the applicant to a workshop, they should tick the `send_invitation` checkbox in Airtable. This will trigger the server to create a new issue in tech-for-better-leads with the initial labels added and send an invitation to the applicant with a link to workshops and a link to the PO agreement (note: the server is currently configured to run once every 30 minutes, so there may be a delay of up to 30 minutes before the new issues appear)
 - If the client has not booked into a workshop, the CF can send a reminder by checking the `send_invitation_reminder` checkbox in Airtable.
 - After the client has attended workshop 1, you can tick the `attended_workshop_1` checkbox, which will send out an email with an individualised link for the follow-up user research survey and update the labels on Github.
-- When the user research survey is received back, the contents of the survey will be automatically added to the existing issue and the labels will be updated.
+- If the client hasn't yet returned their user survey results, then `follow_up_survey_received` will be unchecked. In order to nudge the client, check `send_survey_reminder` in Airtable. This will send out a reminder email, and `sent_survey_reminder` will be checked once that email is actually sent (could take up to 30 mins).
+- When the user research survey is received back, `follow_up_survey_received` will be checked in Airtable, the contents of the survey will be automatically added to the existing issue, and the labels will be updated.
 - If `project_completed` is checked in Airtable, then feel free to check `send_exit_feedback`. This will send out the participant feedback form to the client, and `sent_exit_feedback` will also be ticked when that email is actually sent (it may take up to 30 mins).
 
 ## Contributing

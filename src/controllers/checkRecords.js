@@ -11,7 +11,8 @@ const {
   sendClientInvitationReminder,
   sendFollowUpSurvey,
   sendClientSurveyNotification,
-  sendExitFeedbackForm
+  sendExitFeedbackForm,
+  sendSurveyReminder
 } = require("../models/email/index");
 
 const {
@@ -61,6 +62,12 @@ const checkRecords = (req, res, next) => {
   querySurveysByFormula(newSurvey)
     .then(addSurveyToIssue)
     .catch(console.error);
+
+  // Airtable formula to check if send_survey_reminder has been checked, but a reminder to submit user research hasn't been sent
+  const needsSurveyReminder = "AND({send_survey_reminder} = 1, {sent_survey_reminder} = 0)";
+  queryApplicationsByFormula(needsSurveyReminder)
+    .then(sendSurveyReminderEmail)
+    .catch(console.error)
 
   // Airtable formula for checking if send_exit_feedback has been checked, but no exit feedback form has been sent
   const needsExitFeedback =
@@ -123,6 +130,12 @@ const addSurveyToIssue = records => {
     });
   }
 };
+
+const sendSurveyReminderEmail = records => {
+  records.forEach(record => {
+    sendSurveyReminder(record);
+  });
+}
 
 const sendClientExitFeedbackForm = records => {
   records.forEach(record => {

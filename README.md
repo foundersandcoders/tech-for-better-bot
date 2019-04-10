@@ -19,7 +19,7 @@ It can:
 - Send an invitation to attend a workshop, with a link to a given page (e.g. Eventbrite)
 - Send a reminder invitation if a client has not yet booked themselves in
 - Create a new issue in tech-for-better-leads, add the application info and initial labels
-- Send individual emails to Tech for Better clients with user research survey links, as well as a reminder email if need
+- Send individual emails to Tech for Better clients with user research survey links, as well as a reminder email if needed
 - Send feedback forms once a project has been completed
 - Look for user research surveys in the airtable base, add them to the relevant issue in tech-for-better-leads and update the labels
 

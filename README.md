@@ -58,7 +58,7 @@ Configuration is set through environment variables. The following must be set in
 
 ### Airtable Setup
 
-The fields in Airtable should be configured as per [this example](https://airtable.com/shrPz9lEEo5PheVna)
+The fields in Airtable should be configured as per [this example](https://airtable.com/invite/l?inviteId=invjFabwJZfMFqaxf&inviteToken=79d712b468354a15d8bfc298eec154bf9bc9adc76fb59d8050617c5425563b35). Ask @charlielafosse if there are problems with access.
 
 ## Running locally
 

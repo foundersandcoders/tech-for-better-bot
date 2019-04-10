@@ -52,6 +52,12 @@ if (!exitFeedbackFormUrl)
     "LINKS_EXIT_FEEDBACK_FORM_URL must be set to the URL for the Airtable exit feedback form"
   );
 
+const userResearchDeadline = process.env.USER_RESEARCH_DEADLINE
+ ? process.env.USER_RESEARCH_DEADLINE
+ : false;
+if(!userResearchDeadline)
+  throw new Error("USER_RESEARCH_DEADLINE must be set to the current deadline for returning the results of the user research survey");
+
 let pass;
 if (process.env.EMAIL_PASSWORD) {
   pass = process.env.EMAIL_PASSWORD;
@@ -115,6 +121,9 @@ module.exports = {
   airtable: {
     baseId,
     apiKey
+  },
+  dates: {
+    userResearchDeadline
   },
   email: {
     user,

@@ -13,7 +13,7 @@
 //GITHUB_OWNER=foundersandcoders
 //GITHUB_REPO=tech-for-better-leads
 //GITHUB_ASSIGNEE=CF's Github handle
-//LINKS_EVENTBRITE=Link to eventbrite booking page for workshop 1
+//LINKS_DISCOVERY_WORKSHOP= URL to Discovery Workshop signup form
 //LINKS_PO_AGREEMENT=Link to PO agreement on Google docs
 //LINKS_RESEARCH_SURVEY_URL=Link to follow-up research survey on Airtable
 // LINKS_EXIT_FEEDBACK_FORM_URL=Link to exit feedback form on Airtable
@@ -114,7 +114,7 @@ if (!discoverySignup)
 const productOwnerAgreementUrl = process.env.LINKS_PO_AGREEMENT
   ? process.env.LINKS_PO_AGREEMENT
   : false;
-if (!bookingUrl)
+if (!productOwnerAgreementUrl)
   throw new Error(
     "URL for Product Owner Agreement document must be set in environment variables"
   );

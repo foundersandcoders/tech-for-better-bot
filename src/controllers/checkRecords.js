@@ -1,11 +1,13 @@
 const {
   queryApplicationsByFormula,
   querySurveysByFormula,
+  queryWorkshopsByFormula,
   queryById
 } = require("../models/airtable/index");
 
 const {
   sendCFNotification,
+  sendCFDiscoverySignup,
   sendClientNotification,
   sendClientInvitation,
   sendClientInvitationReminder,
@@ -56,6 +58,13 @@ const checkRecords = (req, res, next) => {
     .then(sendSurvey)
     .catch(console.error);
 
+  // Airtable formula to check for replies to the Discovery Workshop signup.
+  const newDiscoverySignup = "{table_updated} = 0";
+  queryWorkshopsByFormula(newDiscoverySignup)
+    .then(updateAvailableDates)
+    // write function that will update main table with possible dates, and email CF?
+    .catch(console.error);
+
   // Airtable formula to check for rows in the follow-up survey table, where the results
   // have not been added to the existing Github issue
   const newSurvey = "{added_to_issue} = 0";
@@ -98,6 +107,25 @@ const sendInvitationReminders = records => {
     sendClientInvitationReminder(record);
   });
 };
+
+const updateAvailableDates = records => {
+  if (records) {
+    records.forEach(record => {
+      const dates = record.fields.Date.join(", ");
+      queryById(record.fields["application_id"])
+      .then(application => {
+        application.updateFields({
+          discovery_workshop_dates: dates
+        });
+        record.updateFields({
+          table_updated: true
+        });
+        sendCFDiscoverySignup(application);
+      })
+      .catch(console.error);
+    })
+  }
+}
 
 const sendSurvey = records => {
   records.forEach(record => {

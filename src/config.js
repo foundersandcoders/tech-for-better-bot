@@ -109,6 +109,14 @@ if (!bookingUrl)
     "Eventbrite booking URL must be set in environment variables"
   );
 
+  const discoverySignup = process.env.LINKS_DISCOVERY_WORKSHOP
+    ? process.env.LINKS_DISCOVERY_WORKSHOP
+    : false;
+  if (!discoverySignup)
+    throw new Error(
+      "Discovery Workshop signup URL must be set in environment variables"
+    );
+
 const productOwnerAgreementUrl = process.env.LINKS_PO_AGREEMENT
   ? process.env.LINKS_PO_AGREEMENT
   : false;
@@ -140,6 +148,7 @@ module.exports = {
     bookingUrl,
     productOwnerAgreementUrl,
     researchSurveyUrl,
-    exitFeedbackFormUrl
+    exitFeedbackFormUrl,
+    discoverySignup
   }
 };

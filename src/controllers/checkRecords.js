@@ -58,7 +58,7 @@ const checkRecords = (req, res, next) => {
     .then(sendSurvey)
     .catch(console.error);
 
-  // Airtable formula to check for new signups for Discovery Workshop
+  // Airtable formula to check for new signups for Discovery Workshops
   const newDiscoverySignup = "{table_updated} = 0";
   queryWorkshopsByFormula(newDiscoverySignup)
     .then(updateAvailableDates)

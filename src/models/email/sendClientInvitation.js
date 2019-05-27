@@ -19,7 +19,7 @@ const sendClientInvitation = record => {
      record.fields["Organisation"]
    }&prefill_application_id=${record.id}&prefill_Name=${
      record.fields["Name"]
-   }">form</a>
+   }"> this form.</a>
 
   </p>
   <p>If you wish, you can bring one guest with you to our workshop - if you work as part of a team, we do ask that

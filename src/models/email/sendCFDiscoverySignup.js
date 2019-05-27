@@ -20,11 +20,10 @@ const sendCFDiscoverySignup = record => {
   </style>
   <h1>New Discovery Workshop Signup 🎉</h1>
   <p><b>Name:&nbsp;</b>${record.fields["Name"]}</p>
-  <p><b>Email:&nbsp;</b><a href="mailto:${record.fields["Email"]}">${
-    record.fields["Email"]
-  }</a></p>
   <p><b>Organisation:&nbsp;</b>${record.fields["Organisation"]}</p>
-  <p><b>They have said they're available for these dates:&nbsp;</b>${record.fields.discovery_workshop_dates}</p>
+  <p><b>Available for these dates:&nbsp;</b>${record.fields.discovery_workshop_dates}</p>
+  <p>Follow up with them up at&nbsp;<a href="mailto:${record.fields["Email"]}">${
+    record.fields["Email"]}</a>, and confirm a date.</p>
   `
   const mailOptions = {
     from: user,

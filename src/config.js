@@ -53,10 +53,12 @@ if (!exitFeedbackFormUrl)
   );
 
 const userResearchDeadline = process.env.USER_RESEARCH_DEADLINE
- ? process.env.USER_RESEARCH_DEADLINE
- : false;
-if(!userResearchDeadline)
-  throw new Error("USER_RESEARCH_DEADLINE must be set to the current deadline for returning the results of the user research survey");
+  ? process.env.USER_RESEARCH_DEADLINE
+  : false;
+if (!userResearchDeadline)
+  throw new Error(
+    "USER_RESEARCH_DEADLINE must be set to the current deadline for returning the results of the user research survey"
+  );
 
 let pass;
 if (process.env.EMAIL_PASSWORD) {
@@ -101,21 +103,13 @@ if (!assignee) {
   throw new Error("GITHUB_TOKEN must be set in environment variables");
 }
 
-const bookingUrl = process.env.LINKS_EVENTBRITE
-  ? process.env.LINKS_EVENTBRITE
+const discoverySignup = process.env.LINKS_DISCOVERY_WORKSHOP
+  ? process.env.LINKS_DISCOVERY_WORKSHOP
   : false;
-if (!bookingUrl)
+if (!discoverySignup)
   throw new Error(
-    "Eventbrite booking URL must be set in environment variables"
+    "Discovery Workshop signup URL must be set in environment variables"
   );
-
-  const discoverySignup = process.env.LINKS_DISCOVERY_WORKSHOP
-    ? process.env.LINKS_DISCOVERY_WORKSHOP
-    : false;
-  if (!discoverySignup)
-    throw new Error(
-      "Discovery Workshop signup URL must be set in environment variables"
-    );
 
 const productOwnerAgreementUrl = process.env.LINKS_PO_AGREEMENT
   ? process.env.LINKS_PO_AGREEMENT
@@ -145,7 +139,6 @@ module.exports = {
     assignee
   },
   links: {
-    bookingUrl,
     productOwnerAgreementUrl,
     researchSurveyUrl,
     exitFeedbackFormUrl,

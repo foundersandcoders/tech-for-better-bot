@@ -67,4 +67,34 @@ const querySurveysByFormula = formula => {
   })
 }
 
-module.exports = { queryApplicationsByFormula, querySurveysByFormula }
+// this can definitely be refactored and pass a template literal into base()
+
+const queryWorkshopsByFormula = formula => {
+  return new Promise((resolve, reject) => {
+    let results = []
+    base("Discovery Workshops")
+      .select({
+        maxRecords: 1200,
+        pageSize: 100,
+        view: "Grid view",
+        filterByFormula: formula,
+      })
+      .eachPage(
+        function page(records, fetchNextPage) {
+          records.forEach(record => {
+            results.push(record)
+          })
+          fetchNextPage()
+        },
+        function done(err) {
+          if (err) {
+            reject(err)
+          } else {
+            resolve(results)
+          }
+        }
+      )
+  })
+}
+
+module.exports = { queryApplicationsByFormula, querySurveysByFormula, queryWorkshopsByFormula }

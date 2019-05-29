@@ -50,7 +50,7 @@ Configuration is set through environment variables. The following must be set in
 - GITHUB_OWNER=foundersandcoders
 - GITHUB_REPO=tech-for-better-leads // repo to create new issues in
 - GITHUB_ASSIGNEE=charlielafosse // who to assign new issues to
-- LINKS_EVENTBRITE=https://www.eventbrite.co.uk/e/tech-for-better-discovery-workshop-tickets-55336783810
+- LINKS_DISCOVERY_WORKSHOP= // URL to Discovery Workshop signup form 
 - LINKS_PO_AGREEMENT=https://docs.google.com/document/d/1PA6i2VILi4kJOF7QuJxHMwTX2dILNI2BxCBfmZ0ARHs/edit?usp=sharing
 - LINKS_RESEARCH_SURVEY_URL=YOURSURVEYLINK // URL to the follow up survey
 - LINKS_EXIT_FEEDBACK_FORM_URL=YOURFEEDBACKFORMLINK // URL to the exit feedback form
@@ -58,7 +58,7 @@ Configuration is set through environment variables. The following must be set in
 
 ### Airtable Setup
 
-The fields in Airtable should be configured as per [this example](https://airtable.com/invite/l?inviteId=invjFabwJZfMFqaxf&inviteToken=79d712b468354a15d8bfc298eec154bf9bc9adc76fb59d8050617c5425563b35). Ask @charlielafosse if there are problems with access.
+The fields in Airtable should be configured as per [this example](https://airtable.com/tbl3j5Bq6SBgfJoG4/viwSi0z4zGM10Rrcp?blocks=hide). Ask @charlielafosse if there are problems with access.
 
 ## Running locally
 

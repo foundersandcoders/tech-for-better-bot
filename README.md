@@ -16,7 +16,7 @@ It can:
 
 - Notify you when a new Tech for Better application is received
 - Notify the client that we have received their application
-- Send an invitation to attend a workshop, with a link to a given page (e.g. Eventbrite)
+- Send an invitation to attend a workshop, with a link to our Airtable signup form
 - Send a reminder invitation if a client has not yet booked themselves in
 - Create a new issue in tech-for-better-leads, add the application info and initial labels
 - Send individual emails to Tech for Better clients with user research survey links, as well as a reminder email if needed
@@ -73,8 +73,9 @@ The fields in Airtable should be configured as per [this example](https://airtab
 ## How to use
 
 - The server will automatically send an email to coursefacilitator, and a notification email to the applicant, whenever a new Tech for Better application is received.
-- Once the CF has looked over the application, and wishes to invite the applicant to a workshop, they should tick the `send_invitation` checkbox in Airtable. This will trigger the server to create a new issue in tech-for-better-leads with the initial labels added and send an invitation to the applicant with a link to workshops and a link to the PO agreement (note: the server is currently configured to run once every 30 minutes, so there may be a delay of up to 30 minutes before the new issues appear)
+- Once the CF has looked over the application, and wishes to invite the applicant to a workshop, they should tick the `send_invitation` checkbox in Airtable. This will trigger the server to create a new issue in tech-for-better-leads with the initial labels added and send an invitation to the applicant with a link to a signup form and a link to the PO agreement (note: the server is currently configured to run once every 30 minutes, so there may be a delay of up to 30 minutes before the new issues appear)
 - If the client has not booked into a workshop, the CF can send a reminder by checking the `send_invitation_reminder` checkbox in Airtable.
+- Once the client fills out the signup form, the CF will be notified of their availability. Once a workshop date is filled up, the CF should edit out that date option from the Airtable signup form.
 - After the client has attended workshop 1, you can tick the `attended_workshop_1` checkbox, which will send out an email with an individualised link for the follow-up user research survey and update the labels on Github.
 - If the client hasn't yet returned their user survey results, then `follow_up_survey_received` will be unchecked. In order to nudge the client, check `send_survey_reminder` in Airtable. This will send out a reminder email, and `sent_survey_reminder` will be checked once that email is actually sent (could take up to 30 mins).
 - When the user research survey is received back, `follow_up_survey_received` will be checked in Airtable, the contents of the survey will be automatically added to the existing issue, and the labels will be updated.

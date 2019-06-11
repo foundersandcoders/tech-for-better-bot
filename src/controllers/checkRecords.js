@@ -59,7 +59,7 @@ const checkRecords = (req, res, next) => {
     .catch(console.error);
 
   // Airtable formula to check for new signups for Discovery Workshops
-  const newDiscoverySignup = "{table_updated} = 0";
+  const newDiscoverySignup = "{notification_sent} = 0";
   queryWorkshopsByFormula(newDiscoverySignup)
     .then(updateAvailableDates)
     .catch(console.error);
@@ -108,25 +108,16 @@ const sendInvitationReminders = records => {
   });
 };
 
-// problem: need to ensure that we return a
 const updateAvailableDates = records => {
   if (records) {
     records.forEach(record => {
-      const dates = record.fields.Date.join(", ");
+      sendCFDiscoverySignup(record);
       queryById(record.fields["application_id"])
         .then(application => {
           application.updateFields({
-            discovery_workshop_dates: dates
-          });
-          record.updateFields({
-            table_updated: true
+            discovery_workshop_dates: record.fields.Date.join(", ")
           });
         })
-        .then(
-          queryById(record.fields["application_id"])
-            .then(updated => console.log("BLAAA", updated))
-            .catch(console.error)
-        )
         .catch(console.error);
     });
   }

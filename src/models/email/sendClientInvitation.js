@@ -1,12 +1,12 @@
 const {
   email: { user, name },
-  links: { discoverySignup, productOwnerAgreementUrl },
-} = require("../../config")
+  links: { discoverySignup, productOwnerAgreementUrl }
+} = require("../../config");
 
-const transporter = require("./transporter")
+const transporter = require("./transporter");
 
 const sendClientInvitation = record => {
-  const subject = "Tech for Better"
+  const subject = "Tech for Better";
   const html = `
   <p>Hello!</p>
   <p>We would love to invite you to take part in the Tech for Better programme! We will start with
@@ -16,10 +16,10 @@ const sendClientInvitation = record => {
 
 
    <a href="${discoverySignup}?prefill_Organisation=${
-     record.fields["Organisation"]
-   }&prefill_application_id=${record.id}&prefill_Name=${
-     record.fields["Name"]
-   }"> this form.</a>
+    record.fields["Organisation"]
+  }&prefill_application_id=${record.id}&prefill_Name=${
+    record.fields["Name"]
+  }"> this form.</a>
 
   </p>
   <p>If you wish, you can bring one guest with you to our workshop - if you work as part of a team, we do ask that
@@ -33,18 +33,18 @@ const sendClientInvitation = record => {
   <div>Course Facilitator</div>
   <div>Founders & Coders</div>
   </p>
-  `
+  `;
   const mailOptions = {
     from: user,
     to: record.fields["Email"],
     cc: user,
     subject,
-    html,
-  }
+    html
+  };
   transporter.sendMail(mailOptions, function(err, info) {
-    if (err) console.log(err)
-    else record.updateFields({ invitation_sent: true })
-  })
-}
+    if (err) console.log(err);
+    else record.updateFields({ invitation_sent: true });
+  });
+};
 
-module.exports = sendClientInvitation
+module.exports = sendClientInvitation;

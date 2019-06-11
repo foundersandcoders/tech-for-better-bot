@@ -59,7 +59,7 @@ const checkRecords = (req, res, next) => {
     .catch(console.error);
 
   // Airtable formula to check for new signups for Discovery Workshops
-  const newDiscoverySignup = "{table_updated} = 0";
+  const newDiscoverySignup = "{notification_sent} = 0";
   queryWorkshopsByFormula(newDiscoverySignup)
     .then(updateAvailableDates)
     .catch(console.error);
@@ -72,10 +72,11 @@ const checkRecords = (req, res, next) => {
     .catch(console.error);
 
   // Airtable formula to check if send_survey_reminder has been checked, but a reminder to submit user research hasn't been sent
-  const needsSurveyReminder = "AND({send_survey_reminder} = 1, {sent_survey_reminder} = 0)";
+  const needsSurveyReminder =
+    "AND({send_survey_reminder} = 1, {sent_survey_reminder} = 0)";
   queryApplicationsByFormula(needsSurveyReminder)
     .then(sendSurveyReminderEmail)
-    .catch(console.error)
+    .catch(console.error);
 
   // Airtable formula for checking if send_exit_feedback has been checked, but no exit feedback form has been sent
   const needsExitFeedback =
@@ -112,19 +113,16 @@ const updateAvailableDates = records => {
     records.forEach(record => {
       const dates = record.fields.Date.join(", ");
       queryById(record.fields["application_id"])
-      .then(application => {
-        application.updateFields({
-          discovery_workshop_dates: dates
-        });
-        record.updateFields({
-          table_updated: true
-        });
-        sendCFDiscoverySignup(application);
-      })
-      .catch(console.error);
-    })
+        .then(application => {
+          application.updateFields({
+            discovery_workshop_dates: dates
+          });
+          sendCFDiscoverySignup(application, dates);
+        })
+        .catch(console.error);
+    });
   }
-}
+};
 
 const sendSurvey = records => {
   records.forEach(record => {
@@ -162,7 +160,7 @@ const sendSurveyReminderEmail = records => {
   records.forEach(record => {
     sendSurveyReminder(record);
   });
-}
+};
 
 const sendClientExitFeedbackForm = records => {
   records.forEach(record => {

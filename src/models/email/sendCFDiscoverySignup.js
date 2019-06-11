@@ -1,11 +1,11 @@
 const {
-  email: { user },
-} = require("../../config")
+  email: { user }
+} = require("../../config");
 
 const transporter = require("./transporter");
 
-const sendCFDiscoverySignup = record => {
-  const subject = "Discovery Workshop Signup"
+const sendCFDiscoverySignup = (record, dates) => {
+  const subject = "Discovery Workshop Signup";
   const html = `
   <style>
   p {
@@ -19,22 +19,27 @@ const sendCFDiscoverySignup = record => {
   }
   </style>
   <h1>New Discovery Workshop Signup 🎉</h1>
-  <p><b>Name:&nbsp;</b>${record.fields["Name"]}</p>
-  <p><b>Organisation:&nbsp;</b>${record.fields["Organisation"]}</p>
-  <p><b>Available for these dates:&nbsp;</b>${record.fields.discovery_workshop_dates}</p>
-  <p>Follow up with them up at&nbsp;<a href="mailto:${record.fields["Email"]}">${
-    record.fields["Email"]}</a>, and confirm a date.</p>
-  `
+  <p><b>Name:&nbsp;</b>${record.fields.Name}</p>
+  <p><b>Organisation:&nbsp;</b>${record.fields.Organisation}</p>
+  <p><b>Available for these dates:&nbsp;</b>${dates}</p>
+  <p>Follow up with them up at&nbsp;<a href="mailto:${
+    record.fields["Email"]
+  }">${record.fields["Email"]}</a>, and confirm a date.</p>
+  `;
   const mailOptions = {
     from: user,
     to: user,
     subject,
-    html,
-  }
+    html
+  };
   transporter.sendMail(mailOptions, function(err, info) {
-    if (err) console.error(err)
-    // else record.updateFields({ notification_sent: true })
-  })
-}
+    if (err) console.error(err);
+    else {
+      record.updateFields({
+        notification_sent: true
+      });
+    }
+  });
+};
 
-module.exports = sendCFDiscoverySignup
+module.exports = sendCFDiscoverySignup;

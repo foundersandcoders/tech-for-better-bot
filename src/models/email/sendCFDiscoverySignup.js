@@ -5,7 +5,6 @@ const {
 const transporter = require("./transporter");
 
 const sendCFDiscoverySignup = (record, dates) => {
-  console.log("eeee", record.fields);
   const subject = "Discovery Workshop Signup";
   const html = `
   <style>
@@ -36,7 +35,6 @@ const sendCFDiscoverySignup = (record, dates) => {
   transporter.sendMail(mailOptions, function(err, info) {
     if (err) console.error(err);
     else {
-      console.log("oooo", record.fields);
       record.updateFields({
         notification_sent: true
       });

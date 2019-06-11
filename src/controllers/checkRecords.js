@@ -111,12 +111,13 @@ const sendInvitationReminders = records => {
 const updateAvailableDates = records => {
   if (records) {
     records.forEach(record => {
-      sendCFDiscoverySignup(record);
+      const dates = record.fields.Date.join(", ");
       queryById(record.fields["application_id"])
         .then(application => {
           application.updateFields({
-            discovery_workshop_dates: record.fields.Date.join(", ")
+            discovery_workshop_dates: dates
           });
+          sendCFDiscoverySignup(application, dates);
         })
         .catch(console.error);
     });

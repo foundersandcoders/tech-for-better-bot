@@ -4,7 +4,8 @@ const {
 
 const transporter = require("./transporter");
 
-const sendCFDiscoverySignup = record => {
+const sendCFDiscoverySignup = (record, dates) => {
+  console.log("eeee", record.fields);
   const subject = "Discovery Workshop Signup";
   const html = `
   <style>
@@ -21,10 +22,10 @@ const sendCFDiscoverySignup = record => {
   <h1>New Discovery Workshop Signup 🎉</h1>
   <p><b>Name:&nbsp;</b>${record.fields.Name}</p>
   <p><b>Organisation:&nbsp;</b>${record.fields.Organisation}</p>
-  <p><b>Available for these dates:&nbsp;</b>${record.fields.Date.join(", ")}</p>
-  <p>Follow up with them up at&nbsp;<a href="mailto:${record.fields.Email}">${
-    record.fields.Email
-  }</a>, and confirm a date.</p>
+  <p><b>Available for these dates:&nbsp;</b>${dates}</p>
+  <p>Follow up with them up at&nbsp;<a href="mailto:${
+    record.fields["Email"]
+  }">${record.fields["Email"]}</a>, and confirm a date.</p>
   `;
   const mailOptions = {
     from: user,
@@ -34,10 +35,12 @@ const sendCFDiscoverySignup = record => {
   };
   transporter.sendMail(mailOptions, function(err, info) {
     if (err) console.error(err);
-    else
+    else {
+      console.log("oooo", record.fields);
       record.updateFields({
         notification_sent: true
       });
+    }
   });
 };
 

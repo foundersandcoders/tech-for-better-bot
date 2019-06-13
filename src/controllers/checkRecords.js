@@ -118,6 +118,9 @@ const updateAvailableDates = records => {
             discovery_workshop_dates: dates
           });
           sendCFDiscoverySignup(application, dates);
+          record.updateFields({
+            notification_sent: true
+          });
         })
         .catch(console.error);
     });

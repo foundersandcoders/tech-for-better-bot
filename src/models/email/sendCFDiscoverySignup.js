@@ -34,11 +34,6 @@ const sendCFDiscoverySignup = (record, dates) => {
   };
   transporter.sendMail(mailOptions, function(err, info) {
     if (err) console.error(err);
-    else {
-      record.updateFields({
-        notification_sent: true
-      });
-    }
   });
 };
 

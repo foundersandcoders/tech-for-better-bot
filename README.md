@@ -31,7 +31,7 @@ It could potentially do even more!
 
 - Run `npm install`
 
-- The server is set up to check the **Tech for better applications** base on Airtable. If you don't have access to this base and you think you should, @sofer or @arrested-developer can share it with you.
+- The server is set up to check the **Tech for better applications** base on Airtable. If you don't have access to this base and you think you should, @sofer, @arrested-developer or @charlielafosse can share it with you.
 
 - The server will create issues, add comments and labels in [tech-for-better-leads](https://github.com/foundersandcoders/tech-for-better-leads) as @techforbetterbot. This account is linked to the coursefacilitator email, should you need to get access or a new Github authentication token.
 
@@ -68,7 +68,7 @@ The fields in Airtable should be configured as per [this example](https://airtab
 
 - This is intended to be deployed to a service such as Heroku. To allow Heroku apps their beauty sleep, this app can be called using a cron job. Every time the cron job calls the app with a GET request, it will be triggered to check the Airtable for new responses. I used cron-job.org to send a GET request to the deployed Heroku app every 30 minutes.
 
-- The app is currently deployed using the coursefacilitator@foundersandcoders.com Heroku account. Pushes or merges to master on this repo will initiate a new build. If you need access, @arrested-developer might be able to help.
+- The app is currently deployed using the coursefacilitator@foundersandcoders.com Heroku account. Pushes or merges to master on this repo will initiate a new build. If you need access, @arrested-developer or @charlielafosse might be able to help.
 
 ## How to use
 

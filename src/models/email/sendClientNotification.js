@@ -5,10 +5,10 @@ const {
 const transporter = require("./transporter")
 
 const sendClientNotification = record => {
-  const subject = "Thank you for your application"
+  const subject = "Thank you for your expression of interest"
   const html = `
   <p>Hello,</p>
-  <p>Thank you for your application to the Tech for Better programme. We will be in touch with you soon.</p>
+  <p>Thank you for your expression of interest in the Tech for Better programme. We will be in touch with you soon.</p>
   <p>If you have any questions in the meantime, please don't hesitate to contact me.</p>
   <p>${name}
   <div>Course Facilitator</div>

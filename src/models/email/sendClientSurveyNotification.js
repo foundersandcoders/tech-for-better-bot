@@ -6,13 +6,12 @@ const {
 const transporter = require("./transporter")
 
 const sendClientSurveyNotification = record => {
-  const subject = "User research survey"
+  const subject = "Thank you for your application"
   const html = `
   <p>Hello,</p>
-  <p>Thanks for sharing the results of your user research with us.</p>
-  <p>Your project has now joined our backlog ready to be selected by our developers in the
-  next round of projects. Please refer to our <a href="${productOwnerAgreementUrl}">Product 
-  Owner Agreement</a> if you'd like more information about our selection process.</p>
+  <p>Thanks for your application to the Tech for Better programme.</p>
+  <p>Your application has now joined our backlog ready to be selected by our developers in the
+  next round of projects.</p>
   <p>Feel free to drop me a line any time if you have any questions.</p>
   <p>Kind regards,</p>
   <p><b>${name}</b>

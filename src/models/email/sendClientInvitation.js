@@ -9,9 +9,14 @@ const sendClientInvitation = record => {
   const subject = "Tech for Better";
   const html = `
   <p>Hello!</p>
-  <p>We would love to invite you to take part in the Tech for Better programme! We will start with
-  an introductory workshop for our developers to get to know you and the problems you want to solve</p>
-  <p>You can book a place at one of our upcoming workshops via
+  <p>We would love to invite you to take part in an introductory Discovery Workshop! 
+This is a two hour workshop that you will complete with a team of developers 
+where you will define your challenges, describe your users, and identify their needs.
+If you wish, you can bring one guest with you to our workshop.</p>
+
+<p>This is the first step of Tech for Better, after which you can apply to the full programme.</p>
+
+  <p>You can book your place on one of our upcoming workshops via
 
 
 
@@ -22,11 +27,6 @@ const sendClientInvitation = record => {
   }"> this form.</a>
 
   </p>
-  <p>If you wish, you can bring one guest with you to our workshop - if you work as part of a team, we do ask that
-  you nominate one person to act as Product Owner for the duration of the project, who should have full
-  authority to make any decisions relating to the product we make with you.</p>
-  <p>Please read our <a href="${productOwnerAgreementUrl}">Product Owner Agreement</a> before you attend and let me know
-  if you have any questions at all.</p>
   <p>Regards,</p>
   <p>
   <div><b>${name}</b></div>

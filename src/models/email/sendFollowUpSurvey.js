@@ -10,14 +10,13 @@ const sendFollowUpSurvey = record => {
   const html = `
   <p>Hi,</p>
   <p>Thank you for attending our discovery workshop. I hope you found it useful!</p>
-  <p>When you have conducted your user research, please fill in the 
+  <p>When you have conducted your user research, please complete the 
   <a href="${researchSurveyUrl}?prefill_Email=${
     record.fields["Email"]
   }&prefill_application_id=${record.id}&prefill_Name=${
     record.fields["Name"]
-  }">form</a> with what you have
-  learned.</p>
-  <p>Once we have received your survey response, we will keep you up to date with the selection process for your project.</p>
+  }">Tech for Better application form</a>.</p>
+  <p>Once we have received your application we will keep you up to date with the selection process for your project.</p>
   <p>If you have any further questions, please don't hesitate to contact me.</p>
   <p><b>${name}</b>
   <div>Course Facilitator</div>

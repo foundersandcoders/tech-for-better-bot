@@ -17,8 +17,7 @@ const sendClientInvitationReminder = record => {
   }&prefill_application_id=${record.id}&prefill_Name=${
     record.fields["Name"]
   }"> this form.</a>
-  <p>Before your workshop, please take a look at our <a href="${productOwnerAgreementUrl}">Product Owner Agreement</a>
-   and let me know if you have any questions at all.</p>
+  
   <p>Thanks,</p>
   <p>
   <div><b>${name}</b></div>

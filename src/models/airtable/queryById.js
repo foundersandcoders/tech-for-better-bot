@@ -13,7 +13,7 @@ var base = Airtable.base(baseId)
 
 const queryById = id => {
   return new Promise((resolve, reject) => {
-    base("Applications").find(id, function(err, record) {
+    base("Expressions of Interest").find(id, function(err, record) {
       if (err) {
         reject(err)
       }

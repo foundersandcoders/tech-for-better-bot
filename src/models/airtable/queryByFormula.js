@@ -14,7 +14,7 @@ var base = Airtable.base(baseId);
 const queryApplicationsByFormula = formula => {
   return new Promise((resolve, reject) => {
     let results = [];
-    base()
+    base("Expressions of Interest")
       .select({
         maxRecords: 1200,
         pageSize: 100,

@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/techforbetter/airtable_survey_watcher#readme",
   "devDependencies": {
-    "codecov": "^3.1.0",
+    "codecov": "^3.8.3",
     "dotenv": "^6.1.0",
     "eslint": "^5.14.1",
     "eslint-config-prettier": "^4.1.0",
